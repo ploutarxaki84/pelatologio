@@ -95,16 +95,50 @@
     .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
     .calendar-day-name { text-align: center; font-family: 'Orbitron', sans-serif; font-size: 9px; color: rgba(255,255,255,0.5); padding: 5px 0; }
     
-    .calendar-cell { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 4px; padding: 5px 2px; text-align: center; cursor: pointer; position: relative; min-height: 55px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .calendar-cell { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 4px; padding: 5px 2px; text-align: center; cursor: pointer; position: relative; min-height: 55px; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 0.2s; }
     .calendar-cell.free { background: rgba(0, 162, 255, 0.1); border-color: rgba(0, 162, 255, 0.4); color: #00a2ff; }
     .calendar-cell.booked { background: rgba(255, 204, 0, 0.15); border-color: rgba(255, 204, 0, 0.5); color: #ffcc00; }
     .calendar-cell.full { background: rgba(255, 255, 255, 0.15); border-color: #ffffff; color: #ffffff; box-shadow: 0 0 8px rgba(255,255,255,0.3); }
-    .calendar-cell.closed { background: rgba(255, 71, 87, 0.15); border-color: rgba(255, 71, 87, 0.4); color: #ff4757; cursor: not-allowed; }
-    .calendar-cell.empty { background: transparent; border: none; cursor: default; }
+    .calendar-cell.closed { background: rgba(255, 71, 87, 0.15); border-color: rgba(255, 71, 87, 0.4); color: #ff4757; cursor: pointer; }
     
+    .calendar-cell.selected { outline: 2px solid #00f2ff; outline-offset: -2px; transform: scale(0.95); }
+    .calendar-cell.empty { background: transparent; border: none; cursor: default; }
     .calendar-day-num { font-family: 'Orbitron', sans-serif; font-size: 12px; font-weight: bold; }
     .calendar-day-info { font-size: 7px; margin-top: 2px; }
 
+    /* TIMELINE */
+    .timeline-section { display: none; } /* Κρυφό αρχικά */
+    .timeline-section.active { display: block; }
+
+    .day-nav-wrapper { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; background: rgba(255, 255, 255, 0.05); padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); }
+    .day-nav-btn { background: rgba(0, 242, 255, 0.1); border: 1px solid #00f2ff; color: #00f2ff; border-radius: 6px; width: 35px; height: 35px; cursor: pointer; font-size: 14px; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+    .day-nav-btn:hover { background: rgba(0, 242, 255, 0.25); }
+    .day-display { font-family: 'Orbitron', sans-serif; font-size: 14px; color: #fff; text-align: center; flex: 1; text-transform: uppercase; }
+
+    .timeline-container { display: flex; flex-direction: column; gap: 4px; }
+    
+    .time-slot { 
+        display: flex; align-items: center; background: rgba(10, 10, 20, 0.85); 
+        border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 8px 12px; 
+        transition: all 0.2s ease; min-height: 45px;
+    }
+    
+    .time-slot.empty-slot { border-left: 3px solid #00a2ff; cursor: pointer; }
+    .time-slot.empty-slot:hover { border-color: #00f2ff; background: rgba(0, 242, 255, 0.05); }
+    
+    .time-slot.full-slot { background: rgba(255, 255, 255, 0.05); border-left: 3px solid #fff; cursor: pointer; }
+    .time-slot.full-slot:hover { background: rgba(255,255,255,0.08); }
+    
+    .time-slot.disabled-slot { background: rgba(0, 0, 0, 0.4); border-left: 3px solid rgba(255,255,255,0.1); cursor: not-allowed; opacity: 0.4; }
+
+    .time-label { font-family: 'Orbitron', sans-serif; font-size: 12px; color: #00f2ff; width: 80px; flex-shrink: 0; }
+    .slot-content { flex: 1; display: flex; justify-content: space-between; align-items: center; }
+    
+    .slot-name { font-family: 'Orbitron', sans-serif; font-size: 13px; text-transform: uppercase; }
+    .slot-amount { font-family: 'Orbitron', sans-serif; font-size: 12px; font-weight: bold; color: #9d00ff; }
+    .slot-empty-text { color: rgba(255,255,255,0.3); font-size: 11px; font-family: 'JetBrains Mono', monospace; }
+
+    /* HIERARCHY */
     .hierarchy-container { display: flex; flex-direction: column; gap: 15px; }
     .month-block { background: rgba(0, 0, 0, 0.2); border: 1px solid rgba(0, 242, 255, 0.2); border-radius: 8px; overflow: hidden; }
     .month-header { background: rgba(0, 242, 255, 0.1); padding: 10px; font-family: 'Orbitron'; font-size: 14px; color: #00f2ff; border-bottom: 1px solid rgba(0, 242, 255, 0.2); text-transform: uppercase; letter-spacing: 1px; }
@@ -130,7 +164,6 @@
     .btn-danger { background: rgba(255, 71, 87, 0.1); color: #ff4757; border: 1px solid rgba(255, 71, 87, 0.3); }
     .btn-icon { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 6px 10px; border-radius: 4px; cursor: pointer; transition: 0.2s; }
     .btn-icon:hover { background: rgba(255,255,255,0.15); }
-    .btn-disabled { opacity: 0.4; cursor: not-allowed !important; background: rgba(255, 255, 255, 0.1) !important; color: rgba(255, 255, 255, 0.5) !important; border: 1px solid rgba(255, 255, 255, 0.1) !important; }
 
     .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px); display: none; align-items: center; justify-content: center; z-index: 2000; padding: 10px; }
     .modal-content { background: rgba(10, 10, 20, 0.95); border: 2px solid rgba(0, 242, 255, 0.3); border-radius: 12px; width: 100%; max-width: 450px; max-height: 90vh; display: flex; flex-direction: column; overflow: hidden; }
@@ -160,8 +193,6 @@
 
     .price-hint { font-size: 9px; color: #00ff80; margin-top: 4px; display: block; font-family: 'Orbitron'; }
     .day-warning { background: rgba(255, 204, 0, 0.15); border: 1px solid #ffcc00; color: #ffcc00; padding: 8px; border-radius: 6px; font-size: 10px; margin-bottom: 10px; display: none; font-family: 'Orbitron'; }
-
-    .app-client-name { font-family: 'Orbitron'; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
 
     /* ΟΔΗΓΟΣ ΧΡΗΣΗΣ STYLES */
     .guide-section { margin-bottom: 15px; }
@@ -218,54 +249,22 @@
         <section class="content-area" id="main-content"></section>
     </main>
 
-    <!-- MODAL 1: ΕΠΙΛΟΓΕΣ ΗΜΕΡΑΣ -->
-    <div id="modal-day" class="modal-overlay">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="modal-day-title">ΕΠΙΛΟΓΕΣ ΗΜΕΡΑΣ</h3>
-                <button class="modal-close" onclick="closeModal('modal-day')"><i class="fas fa-times"></i></button>
-            </div>
-            <div class="modal-body">
-                <div id="full-day-message" style="display: none; background: rgba(255,255,255,0.1); border: 1px solid #fff; padding: 8px; border-radius: 6px; margin-bottom: 12px; text-align: center; font-size: 11px; font-family: 'Orbitron'; color: #fff;">
-                    <i class="fas fa-info-circle"></i> Η ΗΜΕΡΑ ΕΙΝΑΙ ΠΛΗΡΗΣ
-                </div>
-
-                <div style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px; margin-bottom: 12px;">
-                    <label style="font-family: 'Orbitron'; font-size: 10px; color: #00f2ff;">ΩΡΑΡΙΟ ΗΜΕΡΑΣ</label>
-                    <p style="font-size: 9px; color: rgba(255,255,255,0.5); margin: 3px 0 6px;">Αν αφήσεις κενό, χρησιμοποιείται το γενικό ωράριο.</p>
-                    <div style="display: flex; gap: 5px; align-items: center;">
-                        <select id="day-start-time" class="modal-select" style="flex:1;"></select>
-                        <span style="font-size:11px;">έως</span>
-                        <select id="day-end-time" class="modal-select" style="flex:1;"></select>
-                        <button class="btn-sm btn-complete" onclick="saveDaySchedule()" title="Αποθήκευση ωραρίου"><i class="fas fa-save"></i></button>
-                    </div>
-                </div>
-
-                <button id="btn-new-app-from-day" class="btn-primary" style="width:100%; margin-bottom: 12px;" onclick="openNewAppointmentModalFromDay()">
-                    <i class="fas fa-plus"></i> ΝΕΟ ΡΑΝΤΕΒΟΥ ΓΙ' ΑΥΤΗ ΤΗ ΜΕΡΑ
-                </button>
-
-                <div id="day-appointments-list" style="margin-bottom: 15px;"></div>
-
-                <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px;">
-                    <label style="font-family: 'Orbitron'; font-size: 10px; color: #ff4757;">ΚΑΤΑΣΤΑΣΗ ΗΜΕΡΑΣ</label>
-                    <p style="font-size: 9px; color: rgba(255,255,255,0.5); margin-bottom: 5px;">Απαγορεύει την προσθήκη νέων ραντεβού.</p>
-                    <div id="day-lock-actions"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL 2: ΝΕΟ / ΕΠΕΞΕΡΓΑΣΙΑ ΡΑΝΤΕΒΟΥ -->
+    <!-- MODAL 1: ΕΠΕΞΕΡΓΑΣΙΑ ΡΑΝΤΕΒΟΥ -->
     <div id="modal-appointment" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 id="modal-app-title">ΝΕΟ ΡΑΝΤΕΒΟΥ</h3>
+                <h3 id="modal-app-title">ΚΑΤΑΧΩΡΗΣΗ</h3>
                 <button class="modal-close" onclick="closeModal('modal-appointment')"><i class="fas fa-times"></i></button>
             </div>
             <div class="modal-body">
                 <input type="hidden" id="edit-appointment-id" value="">
+                <input type="hidden" id="appointment-date" value="">
+                <input type="hidden" id="appointment-time" value="">
                 
+                <div class="form-group">
+                    <label style="font-size: 11px; color: #00f2ff;"><i class="far fa-clock"></i> Ώρα: <span id="display-appointment-time"></span></label>
+                </div>
+
                 <div class="form-group">
                     <label>ΠΕΛΑΤΗΣ</label>
                     <div class="radio-group">
@@ -299,19 +298,6 @@
                     <i class="fas fa-exclamation-triangle"></i> <span id="same-day-warning-text"></span>
                 </div>
 
-                <div class="form-group" style="display: flex; gap: 5px;">
-                    <div style="flex: 1;">
-                        <label>ΗΜΕΡΟΜΗΝΙΑ</label>
-                        <input type="date" id="appointment-date" class="modal-input" onchange="checkSameDayAppointment(); updateAvailableTimes();">
-                    </div>
-                    <div style="flex: 1;">
-                        <label>ΩΡΑ</label>
-                        <select id="appointment-time" class="modal-select">
-                            <option value="">Επιλέξτε Ώρα</option>
-                        </select>
-                    </div>
-                </div>
-
                 <div class="form-group">
                     <label>ΠΟΣΟ (€)</label>
                     <input type="number" id="appointment-amount" class="modal-input" step="0.01" placeholder="0.00">
@@ -322,11 +308,15 @@
                     <button class="btn-primary" style="flex:1;" onclick="saveAppointment()">ΑΠΟΘΗΚΕΥΣΗ</button>
                     <button class="btn-primary" style="flex:1; background: transparent; border: 1px solid #fff; color: #fff;" onclick="closeModal('modal-appointment')">ΑΚΥΡΩΣΗ</button>
                 </div>
+                
+                <div style="margin-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px;" id="delete-app-container">
+                    <button class="btn-danger" style="width: 100%; padding: 8px; font-family: 'Orbitron'; font-size: 10px;" onclick="deleteCurrentAppointment()"><i class="fas fa-trash"></i> ΔΙΑΓΡΑΦΗ ΡΑΝΤΕΒΟΥ</button>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- MODAL 3: ΟΔΗΓΟΣ ΧΡΗΣΗΣ -->
+    <!-- MODAL 2: ΟΔΗΓΟΣ ΧΡΗΣΗΣ -->
     <div id="modal-guide" class="modal-overlay">
         <div class="modal-content" style="max-width: 500px;">
             <div class="modal-header">
@@ -336,7 +326,7 @@
             <div class="modal-body">
                 <div class="guide-section">
                     <h4><i class="fas fa-calendar-alt" style="color: #00a2ff;"></i> Ραντεβού (Ημερολόγιο)</h4>
-                    <p>Πατήστε πάνω σε μια ημέρα για να δείτε τα ραντεβού της. Τα χρώματα σημαίνουν:</p>
+                    <p>Στην αρχική οθόνη βλέπετε το ημερολόγιο του μήνα. <b>Καμία λίστα δεν ανοίγει αυτόματα.</b> Τα χρώματα στο ημερολόγιο σημαίνουν:</p>
                     <ul>
                         <li><span style="color:#00a2ff; font-weight:bold;">Μπλε:</span> Ελεύθερη ημέρα.</li>
                         <li><span style="color:#ffcc00; font-weight:bold;">Κίτρινο:</span> Υπάρχουν ραντεβού, αλλά έχει κενό.</li>
@@ -346,16 +336,27 @@
                 </div>
 
                 <div class="guide-section">
-                    <h4><i class="fas fa-lock" style="color: #ff4757;"></i> Κλείδωμα & Ξεκλείδωμα Ημέρας</h4>
-                    <p>Το κλείδωμα απενεργοποιεί την προσθήκη νέων ραντεβού για μια συγκεκριμένη ημέρα (π.χ. αν θέλετε ρεπό ή έχετε προσωπική υποχρέωση).</p>
-                    <p><b>Πώς γίνεται:</b> Ανοίξτε την ημέρα και πατήστε το κόκκινο κουμπί <b>"ΚΛΕΙΔΩΜΑ ΗΜΕΡΑΣ"</b>. Η ημέρα θα γίνει κόκκινη.</p>
-                    <p><b>Πώς ξεκλειδώνει:</b> Αν αλλάξετε γνώμη και θέλετε να βάλετε ένα έκτακτο ραντεβού, ανοίξτε ξανά την ημέρα και πατήστε το μπλε κουμπί <b>"ΞΕΚΛΕΙΔΩΜΑ"</b>. Έτσι η ημέρα θα γίνει πάλι μπλε (ελεύθερη).</p>
-                    <p><i>Σημείωση: Οι Κυριακές είναι κλειδωμένες από προεπιλογή, αλλά μπορούν κι αυτές να ξεκλειδώσουν με τον ίδιο τρόπο.</i></p>
-                    <p><b>Ωράριο:</b> Στο πάνω μέρος του παραθύρου της ημέρας μπορείτε να αλλάξετε το ωράριο (π.χ. αν θέλετε να δουλέψετε μισή μέρα).</p>
+                    <h4><i class="fas fa-clock" style="color: #00a2ff;"></i> Άνοιγμα & Κλείσιμο Ωρών</h4>
+                    <p>Για να δείτε τις ώρες και να κλείσετε ραντεβού, <b>πατήστε πάνω σε μια ημερομηνία</b>. Αμέσως από κάτω θα εμφανιστεί η λίστα με τις ώρες εργασίας (08:00, 09:00, 15:00 - 21:00).</p>
+                    <p>Αν <b>ξαναπατήσετε την ίδια ημερομηνία</b>, η λίστα θα κλείσει και θα εξαφανιστεί, ώστε να έχετε καθαρή θέα του ημερολογίου.</p>
                 </div>
 
                 <div class="guide-section">
                     <h4><i class="fas fa-plus-circle" style="color: #00f2ff;"></i> Καταχώρηση Ραντεβού</h4>
+                    <p>Αφού ανοίξετε τη λίστα με τις ώρες, πατήστε πάνω σε μια <b>ελεύθερη ώρα</b> (με το μπλε περίγραμμα). Θα ανοίξει ένα παράθυρο για να γράψετε το όνομα του πελάτη και το ποσό. Δεν χρειάζεται να πληκτρολογήσετε εσείς την ώρα!</p>
+                    <p>Αν πατήσετε σε μια ώρα που έχει ήδη όνομα, μπορείτε να το επεξεργαστείτε ή να το διαγράψετε.</p>
+                </div>
+
+                <div class="guide-section">
+                    <h4><i class="fas fa-lock" style="color: #ff4757;"></i> Κλείδωμα & Ξεκλείδωμα Ημέρας</h4>
+                    <p>Το κλείδωμα απενεργοποιεί την προσθήκη νέων ραντεβού για μια συγκεκριμένη ημέρα (π.χ. αν θέλετε ρεπό).</p>
+                    <p><b>Πώς γίνεται:</b> Αφού ανοίξετε τη λίστα με τις ώρες, πατήστε το κόκκινο κουμπί <b>"ΚΛΕΙΔΩΜΑ ΗΜΕΡΑΣ"</b> στο κάτω μέρος. Η ημέρα θα γίνει κόκκινη και οι ώρες θα εξαφανιστούν.</p>
+                    <p><b>Πώς ξεκλειδώνει:</b> Αν αλλάξετε γνώμη και θέλετε να βάλετε ένα έκτακτο ραντεβού, πατήστε το μπλε κουμπί <b>"ΞΕΚΛΕΙΔΩΜΑ"</b>. Έτσι η ημέρα θα γίνει πάλι μπλε (ελεύθερη).</p>
+                    <p><i>Σημείωση: Οι Κυριακές είναι κλειδωμένες από προεπιλογή, αλλά μπορούν κι αυτές να ξεκλειδώσουν με τον ίδιο τρόπο.</i></p>
+                </div>
+
+                <div class="guide-section">
+                    <h4><i class="fas fa-tag" style="color: #00ff80;"></i> Αυτόματη Συμπλήρωση Ποσού</h4>
                     <p>Όταν επιλέγετε έναν πελάτη που έχει ξανάρθει, το ποσό <b>συμπληρώνεται αυτόματα</b> από την τελευταία του επίσκεψη. <b>Μπορείτε πάντα να το αλλάξετε</b> χειροκίνητα.</p>
                     <p>Αν προσπαθήσετε να βάλετε τον ίδιο πελάτη δύο φορές την ίδια μέρα, το σύστημα θα σας ειδοποιήσει με κίτρινη προειδοποίηση.</p>
                 </div>
@@ -393,9 +394,9 @@
     let appointments = JSON.parse(localStorage.getItem('massage_appointments')) || [];
     let daysInfo = JSON.parse(localStorage.getItem('massage_days_info')) || {}; 
     
-    let defaultSchedule = JSON.parse(localStorage.getItem('massage_default_schedule')) || { start: '09:00', end: '21:00' };
-
-    let currentCalDate = new Date();
+    let currentCalDate = new Date(); // Ο μήνας που βλέπουμε
+    let activeSelectedDate = null; // Η ημέρα που έχουμε πατήσει (null = καμία)
+    
     let selectedClientId = null;
     
     // Views State
@@ -408,6 +409,7 @@
     let dashMonthDate = new Date();
 
     const monthNamesFull = ["Ιανουάριος", "Φεβρουάριος", "Μάρτιος", "Απρίλιος", "Μάιος", "Ιούνιος", "Ιούλιος", "Αύγουστος", "Σεπτέμβριος", "Οκτώβριος", "Νοέμβριος", "Δεκέμβριος"];
+    const dayNamesFull = ['Κυριακή', 'Δευτέρα', 'Τρίτη', 'Τετάρτη', 'Πέμπτη', 'Παρασκευή', 'Σάββατο'];
 
     document.addEventListener('DOMContentLoaded', () => { showView('appointments'); });
 
@@ -434,36 +436,123 @@
     }
 
     // ==========================================
-    // 1. APPOINTMENTS VIEW
+    // 1. APPOINTMENTS VIEW (TIMELINE)
     // ==========================================
     function renderAppointments(container) {
-        container.innerHTML = `
+        let html = `
             <h2 class="section-title">ΡΑΝΤΕΒΟΥ</h2>
+            
+            <!-- Ημερολόγιο -->
             <div class="calendar-container">
                 <div class="calendar-header">
-                    <button class="calendar-nav-btn" onclick="changeMonth(-1)"><i class="fas fa-chevron-left"></i></button>
+                    <button class="calendar-nav-btn" onclick="changeCalMonth(-1)"><i class="fas fa-chevron-left"></i></button>
                     <div class="calendar-month-year" id="calendar-title"></div>
-                    <button class="calendar-nav-btn" onclick="changeMonth(1)"><i class="fas fa-chevron-right"></i></button>
+                    <button class="calendar-nav-btn" onclick="changeCalMonth(1)"><i class="fas fa-chevron-right"></i></button>
                 </div>
                 <div class="calendar-grid" id="calendar-grid"></div>
             </div>
         `;
-        renderCalendar();
-    }
 
-    function checkIsDayFull(dateStr, dayApps) {
-        let startHour = parseInt(defaultSchedule.start.split(':')[0]);
-        let endHour = parseInt(defaultSchedule.end.split(':')[0]);
-        if (daysInfo[dateStr] && daysInfo[dateStr].start) {
-            startHour = parseInt(daysInfo[dateStr].start.split(':')[0]);
-            endHour = parseInt(daysInfo[dateStr].end.split(':')[0]);
+        // Αν υπάρχει επιλεγμένη ημέρα, φτιάχνουμε το timeline
+        if (activeSelectedDate) {
+            const dateStr = activeSelectedDate;
+            const d = new Date(dateStr);
+            const isSunday = d.getDay() === 0;
+            const info = daysInfo[dateStr] || {};
+            let isClosed = info.isClosed === true;
+            if (isSunday && !info.isUnlocked) isClosed = true;
+
+            const dateDisplay = `${dayNamesFull[d.getDay()]} ${d.getDate()} ${monthNamesFull[d.getMonth()]} ${d.getFullYear()}`;
+
+            html += `
+                <div class="timeline-section active" style="margin-top: 15px;">
+                    <div class="day-nav-wrapper">
+                        <div class="day-display">${dateDisplay}</div>
+                    </div>
+
+                    <div class="data-table-wrapper" style="padding: 10px; margin-bottom: 10px;">
+                        <div class="timeline-container">
+            `;
+
+            if (isClosed) {
+                html += `
+                    <div style="text-align:center; padding: 20px;">
+                        <p style="color:#ff4757; font-family:'Orbitron'; margin-bottom: 10px;">Η ΗΜΕΡΑ ΕΙΝΑΙ ΚΛΕΙΔΩΜΕΝΗ</p>
+                        <button class="btn-primary" style="background: rgba(0, 162, 255, 0.15); border: 1px solid #00a2ff; color: #00a2ff;" onclick="toggleDayLock('${dateStr}', false)"><i class="fas fa-unlock"></i> ΞΕΚΛΕΙΔΩΜΑ</button>
+                    </div>
+                `;
+            } else {
+                // 08:00 & 09:00
+                html += generateTimeSlot(8, 9, dateStr);
+                html += generateTimeSlot(9, 10, dateStr);
+                
+                // Κενό 10:00 - 15:00 (Ανενεργό)
+                html += `<div class="time-slot disabled-slot"><div class="time-label">10:00 - 15:00</div><div class="slot-content"><span class="slot-empty-text">ΜΗ ΔΙΑΘΕΣΙΜΟ</span></div></div>`;
+                
+                // 15:00 έως 22:00
+                for (let i = 15; i < 22; i++) html += generateTimeSlot(i, i+1, dateStr);
+
+                // Κουμπί Κλειδώματος
+                html += `
+                    <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1);">
+                        <button class="btn-danger" style="width:100%; padding:8px; font-family:'Orbitron'; font-size:10px;" onclick="toggleDayLock('${dateStr}', true)"><i class="fas fa-lock"></i> ΚΛΕΙΔΩΜΑ ΗΜΕΡΑΣ</button>
+                    </div>
+                `;
+            }
+
+            html += `
+                        </div>
+                    </div>
+                </div>
+            `;
         }
-        let totalSlots = 0;
-        for (let i = startHour; i <= endHour; i++) totalSlots++;
-        return dayApps.length >= totalSlots;
+
+        container.innerHTML = html;
+        renderCalendarGrid();
     }
 
-    function renderCalendar() {
+    function generateTimeSlot(startH, endH, dateStr) {
+        const timeStr = `${String(startH).padStart(2, '0')}:00`;
+        const endTimeStr = `${String(endH).padStart(2, '0')}:00`;
+        
+        const app = appointments.find(a => a.date === dateStr && a.time === timeStr);
+        let slotClass = 'empty-slot';
+        let content = '';
+        
+        if (app) {
+            const client = clients.find(c => c.id === app.clientId) || { name: 'Άγνωστος', gender: 'other' };
+            const color = getClientColor(client);
+            slotClass = 'full-slot';
+            content = `
+                <div class="slot-content" onclick="editAppointment(${app.id})">
+                    <div>
+                        <div class="slot-name" style="color:${color};">${client.name}</div>
+                        <div style="font-size:9px; color:rgba(255,255,255,0.5);">${client.phone || ''}</div>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <div class="slot-amount">${parseFloat(app.amount).toFixed(2)} €</div>
+                        <div class="slot-icons"><i class="fas fa-pen"></i></div>
+                    </div>
+                </div>
+            `;
+        } else {
+            content = `
+                <div class="slot-content" onclick="openNewAppointmentModal('${dateStr}', '${timeStr}')">
+                    <span class="slot-empty-text">Προσθήκη ραντεβού...</span>
+                    <i class="fas fa-plus" style="color:#00a2ff; opacity:0.5;"></i>
+                </div>
+            `;
+        }
+
+        return `
+            <div class="time-slot ${slotClass}">
+                <div class="time-label">${timeStr} - ${endTimeStr}</div>
+                ${content}
+            </div>
+        `;
+    }
+
+    function renderCalendarGrid() {
         const year = currentCalDate.getFullYear();
         const month = currentCalDate.getMonth();
         document.getElementById('calendar-title').textContent = `${monthNamesFull[month]} ${year}`;
@@ -509,8 +598,10 @@
                 label = `<div class="calendar-day-info">Ελεύθερο</div>`;
             }
 
+            if (dateStr === activeSelectedDate) classes += ' selected';
+
             grid.innerHTML += `
-                <div class="${classes}" onclick="openDayOptions('${dateStr}')">
+                <div class="${classes}" onclick="selectDay('${dateStr}')">
                     <div class="calendar-day-num">${day}</div>
                     ${label}
                 </div>
@@ -518,123 +609,25 @@
         }
     }
 
-    function changeMonth(dir) {
+    function changeCalMonth(dir) {
         currentCalDate.setMonth(currentCalDate.getMonth() + dir);
-        renderCalendar();
+        // Δεν αλλάζουμε το activeSelectedDate, απλά ξανασχεδιάζουμε
+        renderAppointments(document.getElementById('main-content'));
     }
 
-    function openDayOptions(dateStr) {
-        const dayApps = appointments.filter(app => app.date === dateStr).sort((a,b) => a.time.localeCompare(b.time));
-        const modal = document.getElementById('modal-day');
-        modal.dataset.date = dateStr;
-        
-        const d = new Date(dateStr);
-        const isSunday = d.getDay() === 0;
-        document.getElementById('modal-day-title').textContent = `ΗΜΕΡΑ: ${formatDate(dateStr)}`;
-
-        const info = daysInfo[dateStr] || {};
-        const isFull = checkIsDayFull(dateStr, dayApps);
-        const fullMsg = document.getElementById('full-day-message');
-        fullMsg.style.display = isFull ? 'block' : 'none';
-
-        const timeOptions = [];
-        for (let i = 8; i <= 23; i++) {
-            const t = `${String(i).padStart(2,'0')}:00`;
-            timeOptions.push(`<option value="${t}">${t}</option>`);
-        }
-        const startSel = document.getElementById('day-start-time');
-        const endSel = document.getElementById('day-end-time');
-        startSel.innerHTML = `<option value="">-- Γενικό --</option>` + timeOptions.join('');
-        endSel.innerHTML = `<option value="">-- Γενικό --</option>` + timeOptions.join('');
-        startSel.value = info.start || '';
-        endSel.value = info.end || '';
-
-        let html = '';
-        if (dayApps.length === 0) {
-            html = '<p style="text-align:center; color:rgba(255,255,255,0.4); padding:5px; font-size:11px;">Κανένα ραντεβού.</p>';
+    function selectDay(dateStr) {
+        if (activeSelectedDate === dateStr) {
+            activeSelectedDate = null; // Κλείσιμο λίστας
         } else {
-            dayApps.forEach(app => {
-                const client = clients.find(c => c.id === app.clientId) || { name: 'Άγνωστος', gender: 'other' };
-                const color = getClientColor(client);
-                const genderIcon = client.gender === 'male' ? '<i class="fas fa-mars"></i>'
-                                 : client.gender === 'female' ? '<i class="fas fa-venus"></i>'
-                                 : '<i class="fas fa-user"></i>';
-                html += `
-                    <div style="display:flex; justify-content:space-between; align-items:center; padding:8px; background:rgba(255,255,255,0.03); border-radius:6px; border-left:3px solid ${color}; margin-bottom:4px;">
-                        <div>
-                            <div style="color:${color};" class="app-client-name">${genderIcon} ${app.time} - ${client.name}</div>
-                            <div style="font-size:10px; color:#9d00ff;">${parseFloat(app.amount).toFixed(2)} €</div>
-                        </div>
-                        <div style="display:flex; gap:4px;">
-                            <button class="btn-icon" onclick="editAppointment(${app.id})" title="Τροποποίηση"><i class="fas fa-pen" style="color:#00f2ff;"></i></button>
-                            <button class="btn-icon" onclick="deleteAppointment(${app.id})" title="Διαγραφή"><i class="fas fa-trash" style="color:#ff4757;"></i></button>
-                        </div>
-                    </div>
-                `;
-            });
+            activeSelectedDate = dateStr; // Άνοιγμα λίστας
         }
-        document.getElementById('day-appointments-list').innerHTML = html;
-
-        const lockActions = document.getElementById('day-lock-actions');
-        const isClosed = info.isClosed === true;
-        const isUnlockedSunday = info.isUnlocked === true;
-        const btnNewApp = document.getElementById('btn-new-app-from-day');
-        const isDayLocked = (isSunday && !isUnlockedSunday) || isClosed;
-
-        if (isDayLocked || isFull) {
-            btnNewApp.classList.add('btn-disabled');
-            btnNewApp.setAttribute('disabled', 'true');
-        } else {
-            btnNewApp.classList.remove('btn-disabled');
-            btnNewApp.removeAttribute('disabled');
-        }
-
-        if (isSunday) {
-            if (isUnlockedSunday) {
-                lockActions.innerHTML = `<button class="btn-danger" style="width:100%; padding:8px; font-family:'Orbitron'; font-size:10px;" onclick="toggleDayLock('${dateStr}', false)"><i class="fas fa-lock"></i> ΚΛΕΙΔΩΜΑ ΚΥΡΙΑΚΗΣ</button>`;
-            } else {
-                lockActions.innerHTML = `<button class="btn-primary" style="width:100%; padding:8px; font-family:'Orbitron'; font-size:10px; background: rgba(0, 162, 255, 0.15); border: 1px solid #00a2ff; color: #00a2ff;" onclick="toggleDayLock('${dateStr}', true)"><i class="fas fa-unlock"></i> ΞΕΚΛΕΙΔΩΜΑ ΚΥΡΙΑΚΗΣ (ΕΚΤΑΚΤΟ)</button>`;
-            }
-        } else {
-            if (isClosed) {
-                lockActions.innerHTML = `<button class="btn-primary" style="width:100%; padding:8px; font-family:'Orbitron'; font-size:10px; background: rgba(0, 162, 255, 0.15); border: 1px solid #00a2ff; color: #00a2ff;" onclick="toggleDayLock('${dateStr}', false)"><i class="fas fa-unlock"></i> ΞΕΚΛΕΙΔΩΜΑ</button>`;
-            } else {
-                lockActions.innerHTML = `<button class="btn-danger" style="width:100%; padding:8px; font-family:'Orbitron'; font-size:10px;" onclick="toggleDayLock('${dateStr}', true)"><i class="fas fa-lock"></i> ΚΛΕΙΔΩΜΑ ΗΜΕΡΑΣ</button>`;
-            }
-        }
-
-        modal.style.display = 'flex';
+        renderAppointments(document.getElementById('main-content'));
     }
 
-    function saveDaySchedule() {
-        const modal = document.getElementById('modal-day');
-        const dateStr = modal.dataset.date;
-        if (!dateStr) return;
-        const start = document.getElementById('day-start-time').value;
-        const end = document.getElementById('day-end-time').value;
-        if (!daysInfo[dateStr]) daysInfo[dateStr] = {};
-        if (!start && !end) {
-            delete daysInfo[dateStr].start;
-            delete daysInfo[dateStr].end;
-            showToast('Επαναφορά στο γενικό ωράριο.');
-        } else {
-            if (!start || !end) { alert('Συμπλήρωσε και ώρα έναρξης και λήξης.'); return; }
-            if (start >= end) { alert('Η λήξη πρέπει να είναι μετά την έναρξη.'); return; }
-            daysInfo[dateStr].start = start;
-            daysInfo[dateStr].end = end;
-            showToast(`Ωράριο ημέρας: ${start} - ${end}`);
-        }
-        localStorage.setItem('massage_days_info', JSON.stringify(daysInfo));
-        openDayOptions(dateStr);
-    }
-
-    function openNewAppointmentModalFromDay() {
-        const btn = document.getElementById('btn-new-app-from-day');
-        if (btn.hasAttribute('disabled')) return;
-        const modal = document.getElementById('modal-day');
-        const dateStr = modal.dataset.date;
-        closeModal('modal-day');
-        openNewAppointmentModal(dateStr);
+    function checkIsDayFull(dateStr, dayApps) {
+        const availableSlots = [8, 9, 15, 16, 17, 18, 19, 20, 21];
+        const bookedTimes = dayApps.map(a => parseInt(a.time.split(':')[0]));
+        return availableSlots.every(hour => bookedTimes.includes(hour));
     }
 
     function toggleDayLock(dateStr, lock) {
@@ -647,13 +640,12 @@
             daysInfo[dateStr].isClosed = lock;
         }
         localStorage.setItem('massage_days_info', JSON.stringify(daysInfo));
-        closeModal('modal-day');
         showToast(lock ? 'Η ημέρα κλείδωσε!' : 'Η ημέρα ξεκλείδωσε!');
-        renderCalendar();
+        renderAppointments(document.getElementById('main-content'));
     }
 
     // ==========================================
-    // ΑΝΑΖΗΤΗΣΗ ΠΕΛΑΤΩΝ ΚΑΙ ΕΛΕΓΧΟΙ ΣΤΟ MODAL
+    // ΑΝΑΖΗΤΗΣΗ ΠΕΛΑΤΩΝ
     // ==========================================
     function searchClientsForAppointment() {
         const query = document.getElementById('client-search-input').value.trim().toLowerCase();
@@ -693,7 +685,6 @@
         document.getElementById('selected-client-name').textContent = `${client.name} (${client.phone})`;
         document.getElementById('client-search-input').style.display = 'none';
 
-        // Αυτόματη συμπλήρωση ποσού
         const clientApps = appointments.filter(a => a.clientId === clientId && a.status === 'completed').sort((a,b) => new Date(b.date) - new Date(a.date));
         if (clientApps.length > 0) {
             document.getElementById('appointment-amount').value = clientApps[0].amount;
@@ -702,7 +693,6 @@
             document.getElementById('auto-price-hint').style.display = 'none';
         }
 
-        // Έλεγχος για ραντεβού την ίδια μέρα
         checkSameDayAppointment();
     }
 
@@ -743,11 +733,15 @@
     function editAppointment(id) {
         const app = appointments.find(a => a.id === id);
         if (!app) return;
-        closeModal('modal-day');
         
         document.getElementById('edit-appointment-id').value = app.id;
-        document.getElementById('modal-app-title').textContent = "ΤΡΟΠΟΠΟΙΗΣΗ ΡΑΝΤΕΒΟΥ";
+        document.getElementById('appointment-date').value = app.date;
+        document.getElementById('appointment-time').value = app.time;
+        document.getElementById('display-appointment-time').textContent = `${formatDate(app.date)} στις ${app.time}`;
+        document.getElementById('modal-app-title').textContent = "ΕΠΕΞΕΡΓΑΣΙΑ";
         
+        document.getElementById('delete-app-container').style.display = 'block';
+
         document.querySelector('input[name="client-type"][value="existing"]').checked = true;
         toggleClientInput();
         clearSelectedClient();
@@ -760,9 +754,6 @@
             document.getElementById('selected-client-name').textContent = `${client.name} (${client.phone})`;
         }
 
-        document.getElementById('appointment-date').value = app.date;
-        updateAvailableTimes();
-        document.getElementById('appointment-time').value = app.time;
         document.getElementById('appointment-amount').value = app.amount;
         document.getElementById('auto-price-hint').style.display = 'none';
         
@@ -771,18 +762,27 @@
         document.getElementById('modal-appointment').style.display = 'flex';
     }
 
-    function deleteAppointment(id) {
+    function deleteCurrentAppointment() {
+        const id = document.getElementById('edit-appointment-id').value;
+        if (!id) return;
+        
         if (!confirm('Είστε σίγουροι ότι θέλετε να διαγράψετε αυτό το ραντεβού;')) return;
-        appointments = appointments.filter(a => a.id !== id);
+        
+        appointments = appointments.filter(a => a.id != id);
         localStorage.setItem('massage_appointments', JSON.stringify(appointments));
         showToast('Το ραντεβού διαγράφηκε.');
-        closeModal('modal-day');
-        renderCalendar();
+        closeModal('modal-appointment');
+        renderAppointments(document.getElementById('main-content'));
     }
 
-    function openNewAppointmentModal(prefillDate = null) {
+    function openNewAppointmentModal(dateStr, timeStr) {
         document.getElementById('edit-appointment-id').value = "";
+        document.getElementById('appointment-date').value = dateStr;
+        document.getElementById('appointment-time').value = timeStr;
+        document.getElementById('display-appointment-time').textContent = `${formatDate(dateStr)} στις ${timeStr}`;
         document.getElementById('modal-app-title').textContent = "ΝΕΟ ΡΑΝΤΕΒΟΥ";
+        
+        document.getElementById('delete-app-container').style.display = 'none';
         
         document.getElementById('new-client-name').value = '';
         document.getElementById('new-client-phone').value = '';
@@ -791,9 +791,6 @@
         toggleClientInput();
         clearSelectedClient();
 
-        const todayStr = new Date().toISOString().split('T')[0];
-        document.getElementById('appointment-date').value = prefillDate || todayStr;
-        updateAvailableTimes();
         document.getElementById('modal-appointment').style.display = 'flex';
     }
 
@@ -807,33 +804,6 @@
         }
     }
 
-    function updateAvailableTimes() {
-        const date = document.getElementById('appointment-date').value;
-        const timeSelect = document.getElementById('appointment-time');
-        const currentEditId = document.getElementById('edit-appointment-id').value;
-        const currentVal = timeSelect.value;
-        timeSelect.innerHTML = '<option value="">-- Επιλέξτε Ώρα --</option>';
-
-        if (!date) return;
-
-        let startHour = parseInt(defaultSchedule.start.split(':')[0]);
-        let endHour = parseInt(defaultSchedule.end.split(':')[0]);
-        if (daysInfo[date] && daysInfo[date].start) {
-            startHour = parseInt(daysInfo[date].start.split(':')[0]);
-            endHour = parseInt(daysInfo[date].end.split(':')[0]);
-        }
-
-        const bookedTimes = appointments.filter(a => a.date === date && a.id != currentEditId).map(a => a.time);
-
-        for (let i = startHour; i <= endHour; i++) {
-            const timeStr = `${String(i).padStart(2, '0')}:00`;
-            if (!bookedTimes.includes(timeStr)) {
-                timeSelect.innerHTML += `<option value="${timeStr}">${timeStr}</option>`;
-            }
-        }
-        if (currentVal) timeSelect.value = currentVal;
-    }
-
     function saveAppointment() {
         const editId = document.getElementById('edit-appointment-id').value;
         const type = document.querySelector('input[name="client-type"]:checked').value;
@@ -841,21 +811,7 @@
         const time = document.getElementById('appointment-time').value;
         const amount = document.getElementById('appointment-amount').value;
 
-        if (!date || !time) { alert('Επιλέξτε ημερομηνία και ώρα!'); return; }
         if (!amount || parseFloat(amount) <= 0) { alert('Εισάγετε έγκυρο ποσό!'); return; }
-        
-        const d = new Date(date);
-        const isSunday = d.getDay() === 0;
-        const info = daysInfo[date] || {};
-
-        if (isSunday && !info.isUnlocked) {
-            alert('Οι Κυριακές είναι κλειστές! Πήγαινε στο ημερολόγιο και ξεκλείδωσέ την αν θες έκτακτο ραντεβού.');
-            return;
-        }
-        if (info.isClosed) {
-            alert('Αυτή η ημέρα έχει κλειδώσει!');
-            return;
-        }
 
         let clientId;
         if (type === 'new') {
@@ -880,8 +836,6 @@
             const index = appointments.findIndex(a => a.id == editId);
             if (index !== -1) {
                 appointments[index].clientId = clientId;
-                appointments[index].date = date;
-                appointments[index].time = time;
                 appointments[index].amount = parseFloat(amount);
             }
             showToast('Το ραντεβού ενημερώθηκε!');
@@ -892,7 +846,7 @@
 
         localStorage.setItem('massage_appointments', JSON.stringify(appointments));
         closeModal('modal-appointment');
-        showView('appointments');
+        renderAppointments(document.getElementById('main-content'));
     }
 
     // ==========================================
@@ -1212,8 +1166,7 @@
             
             const weekKey = `Εβδομάδα: ${formatDate(startOfWeek.toISOString().split('T')[0])} - ${formatDate(endOfWeek.toISOString().split('T')[0])}`;
 
-            const dayNames = ['Κυριακή', 'Δευτέρα', 'Τρίτη', 'Τετάρτη', 'Πέμπτη', 'Παρασκευή', 'Σάββατο'];
-            const dayKey = `${dayNames[d.getDay()]} ${d.getDate()}/${d.getMonth()+1}`;
+            const dayKey = `${dayNamesFull[d.getDay()]} ${d.getDate()}/${d.getMonth()+1}`;
 
             const client = clients.find(c => c.id === app.clientId) || { gender: 'other' };
             const genderKey = client.gender === 'male' ? 'male' : client.gender === 'female' ? 'female' : 'other';
@@ -1328,7 +1281,7 @@
     }
 
     function exportData() {
-        const data = { clients, appointments, daysInfo, defaultSchedule };
+        const data = { clients, appointments, daysInfo };
         const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
         const a = document.createElement('a');
         a.href = URL.createObjectURL(blob);
@@ -1348,13 +1301,11 @@
                     clients = data.clients;
                     appointments = data.appointments;
                     daysInfo = data.daysInfo || {};
-                    defaultSchedule = data.defaultSchedule || { start: '09:00', end: '21:00' };
                     localStorage.setItem('massage_clients', JSON.stringify(clients));
                     localStorage.setItem('massage_appointments', JSON.stringify(appointments));
                     localStorage.setItem('massage_days_info', JSON.stringify(daysInfo));
-                    localStorage.setItem('massage_default_schedule', JSON.stringify(defaultSchedule));
                     showToast('Εισαγωγή OK!');
-                    showView('dashboard');
+                    showView('appointments');
                 } else alert('Μη έγκυρο αρχείο.');
             } catch (err) { alert('Σφάλμα.'); }
         };
@@ -1363,11 +1314,10 @@
 
     function resetAllData() {
         if (!confirm('Διαγραφή ΟΛΩΝ των δεδομένων;')) return;
-        clients = []; appointments = []; daysInfo = {}; defaultSchedule = { start: '09:00', end: '21:00' };
+        clients = []; appointments = []; daysInfo = {};
         localStorage.removeItem('massage_clients');
         localStorage.removeItem('massage_appointments');
         localStorage.removeItem('massage_days_info');
-        localStorage.removeItem('massage_default_schedule');
         showToast('Διαγράφηκαν όλα.');
         showView('appointments');
     }
