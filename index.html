@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ΠΕΛΑΤΟΛΟΓΙΟ</title>
+    <title>ΗΜΕΡΟΛΟΓΙΟ</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
@@ -24,69 +24,26 @@
     .main-layout { display: grid; grid-template-columns: 250px 1fr; height: calc(100vh - 60px); margin-top: 60px; padding: 10px; gap: 10px; overflow: hidden; }
 
     .sidebar { background: rgba(10, 10, 20, 0.85); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 10px; height: calc(100vh - 80px); display: flex; flex-direction: column; }
-    .sidebar-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; }
+    .sidebar-grid { display: grid; grid-template-columns: 1fr; gap: 8px; width: 100%; }
 
     .sidebar-btn { 
-        display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; padding: 12px 5px; 
+        display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; padding: 15px 5px; 
         background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); 
         border-radius: 8px; color: #fff; font-family: 'Orbitron', sans-serif; 
-        font-size: 10px; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease; 
+        font-size: 11px; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease; 
         text-transform: uppercase; text-align: center; width: 100%;
     }
-    .sidebar-btn i { font-size: 16px; }
+    .sidebar-btn i { font-size: 18px; margin-bottom: 5px;}
     
     .nav-appointments { border-left: 3px solid #00a2ff; color: #00a2ff; }
     .nav-appointments.active, .nav-appointments:hover { background: rgba(0, 162, 255, 0.15); }
-    .nav-clients { border-left: 3px solid #9d00ff; color: #9d00ff; }
-    .nav-clients.active, .nav-clients:hover { background: rgba(157, 0, 255, 0.15); }
     .nav-settings { border-left: 3px solid #ffffff; color: #ffffff; }
     .nav-settings.active, .nav-settings:hover { background: rgba(255, 255, 255, 0.15); }
-    .nav-dashboard { border-left: 3px solid #00f2ff; color: #00f2ff; }
-    .nav-dashboard.active, .nav-dashboard:hover { background: rgba(0, 242, 255, 0.15); }
 
     .content-area { display: flex; flex-direction: column; gap: 10px; height: 100%; overflow-y: auto; padding-right: 5px; }
     .section-title { font-family: 'Orbitron', sans-serif; font-size: 16px; color: #fff; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; border-bottom: 2px solid rgba(255, 255, 255, 0.1); padding-bottom: 10px; }
 
-    .dash-btn-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(85px, 1fr)); gap: 8px; margin-bottom: 10px; }
-    .dash-btn { 
-        display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; padding: 12px 5px; 
-        background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); 
-        border-radius: 8px; color: #fff; font-family: 'Orbitron', sans-serif; 
-        font-size: 10px; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease; 
-        text-transform: uppercase; text-align: center; width: 100%;
-    }
-    .dash-btn i { font-size: 16px; }
-    .dash-btn.active { background: rgba(0, 242, 255, 0.15); border-color: #00f2ff; color: #00f2ff; box-shadow: 0 0 10px rgba(0, 242, 255, 0.2); }
-    
-    .dash-btn.btn-female { color: #ff69b4; border-left: 3px solid #ff69b4; }
-    .dash-btn.btn-female.active { background: rgba(255, 105, 180, 0.15); border-color: #ff69b4; box-shadow: 0 0 10px rgba(255,105,180,0.2); }
-    .dash-btn.btn-male { color: #00a2ff; border-left: 3px solid #00a2ff; }
-    .dash-btn.btn-male.active { background: rgba(0, 162, 255, 0.15); border-color: #00a2ff; box-shadow: 0 0 10px rgba(0,162,255,0.2); }
-    
-    .dash-btn.btn-pending { color: #ffcc00; border-left: 3px solid #ffcc00; }
-    .dash-btn.btn-pending.active { background: rgba(255, 204, 0, 0.15); border-color: #ffcc00; box-shadow: 0 0 10px rgba(255,204,0,0.2); }
-    .dash-btn.btn-income { color: #00ff80; border-left: 3px solid #00ff80; }
-    .dash-btn.btn-income.active { background: rgba(0, 255, 128, 0.15); border-color: #00ff80; box-shadow: 0 0 10px rgba(0,255,128,0.2); }
-
-    .dash-btn .amount-val { font-family: 'Orbitron', sans-serif; font-size: 13px; font-weight: bold; color: #fff; margin-top: 4px; }
-    .dash-btn.btn-female .amount-val { color: #ff69b4; }
-    .dash-btn.btn-male .amount-val { color: #00a2ff; }
-    .dash-btn.btn-income .amount-val { color: #00ff80; }
-    .dash-btn.btn-pending .amount-val { color: #ffcc00; }
-
-    .month-nav-wrapper { display: flex; gap: 5px; align-items: center; margin-bottom: 10px; }
-    .month-nav-btn { 
-        background: rgba(0, 242, 255, 0.1); border: 1px solid #00f2ff; color: #00f2ff; 
-        border-radius: 6px; width: 40px; height: 38px; cursor: pointer; font-size: 14px; 
-        display: flex; align-items: center; justify-content: center; transition: 0.2s;
-    }
-    .month-nav-btn:hover { background: rgba(0, 242, 255, 0.25); }
-    .month-display { 
-        flex: 1; background: rgba(0, 242, 255, 0.1); border: 1px solid #00f2ff; border-radius: 6px; 
-        color: #fff; font-family: 'Orbitron', sans-serif; font-size: 13px; text-align: center; 
-        padding: 9px 0; text-transform: uppercase; font-weight: bold;
-    }
-
+    /* CALENDAR */
     .calendar-container { background: rgba(10, 10, 20, 0.85); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 10px; }
     .calendar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
     .calendar-month-year { font-family: 'Orbitron', sans-serif; font-size: 14px; color: #00f2ff; }
@@ -96,23 +53,22 @@
     .calendar-day-name { text-align: center; font-family: 'Orbitron', sans-serif; font-size: 9px; color: rgba(255,255,255,0.5); padding: 5px 0; }
     
     .calendar-cell { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 4px; padding: 5px 2px; text-align: center; cursor: pointer; position: relative; min-height: 55px; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 0.2s; }
+    
     .calendar-cell.free { background: rgba(0, 162, 255, 0.1); border-color: rgba(0, 162, 255, 0.4); color: #00a2ff; }
     .calendar-cell.booked { background: rgba(255, 204, 0, 0.15); border-color: rgba(255, 204, 0, 0.5); color: #ffcc00; }
     .calendar-cell.full { background: rgba(255, 255, 255, 0.15); border-color: #ffffff; color: #ffffff; box-shadow: 0 0 8px rgba(255,255,255,0.3); }
-    .calendar-cell.closed { background: rgba(255, 71, 87, 0.15); border-color: rgba(255, 71, 87, 0.4); color: #ff4757; cursor: pointer; }
-    
-    .calendar-cell.selected { outline: 2px solid #00f2ff; outline-offset: -2px; transform: scale(0.95); }
+    .calendar-cell.closed { background: rgba(255, 71, 87, 0.15); border-color: rgba(255, 71, 87, 0.4); color: #ff4757; cursor: not-allowed; }
     .calendar-cell.empty { background: transparent; border: none; cursor: default; }
+    .calendar-cell.selected { outline: 2px solid #00f2ff; outline-offset: -2px; transform: scale(0.95); }
+    
     .calendar-day-num { font-family: 'Orbitron', sans-serif; font-size: 12px; font-weight: bold; }
     .calendar-day-info { font-size: 7px; margin-top: 2px; }
 
     /* TIMELINE */
-    .timeline-section { display: none; } /* Κρυφό αρχικά */
+    .timeline-section { display: none; } 
     .timeline-section.active { display: block; }
 
     .day-nav-wrapper { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; background: rgba(255, 255, 255, 0.05); padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); }
-    .day-nav-btn { background: rgba(0, 242, 255, 0.1); border: 1px solid #00f2ff; color: #00f2ff; border-radius: 6px; width: 35px; height: 35px; cursor: pointer; font-size: 14px; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
-    .day-nav-btn:hover { background: rgba(0, 242, 255, 0.25); }
     .day-display { font-family: 'Orbitron', sans-serif; font-size: 14px; color: #fff; text-align: center; flex: 1; text-transform: uppercase; }
 
     .timeline-container { display: flex; flex-direction: column; gap: 4px; }
@@ -135,36 +91,19 @@
     .slot-content { flex: 1; display: flex; justify-content: space-between; align-items: center; }
     
     .slot-name { font-family: 'Orbitron', sans-serif; font-size: 13px; text-transform: uppercase; }
-    .slot-amount { font-family: 'Orbitron', sans-serif; font-size: 12px; font-weight: bold; color: #9d00ff; }
     .slot-empty-text { color: rgba(255,255,255,0.3); font-size: 11px; font-family: 'JetBrains Mono', monospace; }
 
-    /* HIERARCHY */
-    .hierarchy-container { display: flex; flex-direction: column; gap: 15px; }
-    .month-block { background: rgba(0, 0, 0, 0.2); border: 1px solid rgba(0, 242, 255, 0.2); border-radius: 8px; overflow: hidden; }
-    .month-header { background: rgba(0, 242, 255, 0.1); padding: 10px; font-family: 'Orbitron'; font-size: 14px; color: #00f2ff; border-bottom: 1px solid rgba(0, 242, 255, 0.2); text-transform: uppercase; letter-spacing: 1px; }
-    .week-block { padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.05); }
-    .week-block:last-child { border-bottom: none; }
-    .week-header { font-family: 'Orbitron'; font-size: 11px; color: #fff; margin-bottom: 10px; display: flex; justify-content: space-between; background: rgba(255,255,255,0.05); padding: 5px 10px; border-radius: 4px; }
-    .day-block { margin-bottom: 12px; border-left: 2px solid rgba(255,255,255,0.1); padding-left: 10px; }
-    .day-header { font-family: 'Orbitron'; font-size: 10px; color: rgba(255,255,255,0.8); margin-bottom: 8px; }
-    .gender-block { margin-bottom: 8px; padding-left: 10px; }
-    .gender-header { font-family: 'Orbitron'; font-size: 10px; margin-bottom: 5px; display: flex; align-items: center; gap: 5px; }
-    .gender-header.male { color: #00a2ff; }
-    .gender-header.female { color: #ff69b4; }
-    .gender-header.other { color: #ccc; }
-
+    /* DATA TABLES */
     .data-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
     .data-table th, .data-table td { padding: 8px 10px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 11px; text-align: left; }
     .data-table th { font-family: 'Orbitron', sans-serif; font-size: 9px; color: rgba(255,255,255,0.5); background: rgba(10, 10, 20, 0.95); }
     .data-table-wrapper { background: rgba(10, 10, 20, 0.85); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; overflow: hidden; padding: 10px; }
 
+    /* BUTTONS & FORMS */
     .btn-primary { padding: 8px 12px; border-radius: 6px; font-family: 'Orbitron', sans-serif; font-size: 11px; cursor: pointer; border: none; background: linear-gradient(135deg, #00f2ff, #9d00ff); color: #050508; font-weight: bold; display: inline-flex; align-items: center; gap: 6px; justify-content: center; }
     .btn-sm { padding: 5px 8px; border-radius: 4px; font-family: 'Orbitron', sans-serif; font-size: 9px; cursor: pointer; border: none; }
-    .btn-complete { background: rgba(0, 255, 128, 0.1); color: #00ff80; border: 1px solid rgba(0, 255, 128, 0.3); }
     .btn-danger { background: rgba(255, 71, 87, 0.1); color: #ff4757; border: 1px solid rgba(255, 71, 87, 0.3); }
-    .btn-icon { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 6px 10px; border-radius: 4px; cursor: pointer; transition: 0.2s; }
-    .btn-icon:hover { background: rgba(255,255,255,0.15); }
-
+    
     .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px); display: none; align-items: center; justify-content: center; z-index: 2000; padding: 10px; }
     .modal-content { background: rgba(10, 10, 20, 0.95); border: 2px solid rgba(0, 242, 255, 0.3); border-radius: 12px; width: 100%; max-width: 450px; max-height: 90vh; display: flex; flex-direction: column; overflow: hidden; }
     .modal-header { display: flex; justify-content: space-between; align-items: center; padding: 12px 15px; border-bottom: 2px solid rgba(0, 242, 255, 0.2); }
@@ -174,27 +113,10 @@
     
     .form-group { margin-bottom: 12px; }
     .form-group label { display: block; margin-bottom: 5px; font-family: 'Orbitron', sans-serif; font-size: 9px; color: rgba(255, 255, 255, 0.8); }
-    .modal-input, .modal-select { width: 100%; padding: 8px; background: rgba(5, 5, 12, 0.8); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 6px; color: #fff; font-family: 'Orbitron', sans-serif; font-size: 12px; }
-    .modal-input:focus, .modal-select:focus { outline: none; border-color: #00f2ff; }
+    .modal-input { width: 100%; padding: 8px; background: rgba(5, 5, 12, 0.8); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 6px; color: #fff; font-family: 'Orbitron', sans-serif; font-size: 12px; }
+    .modal-input:focus { outline: none; border-color: #00f2ff; }
 
-    .radio-group { display: flex; gap: 10px; margin-bottom: 10px; }
-    .radio-group label { display: flex; align-items: center; gap: 5px; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 12px; }
-    .radio-group input { accent-color: #00f2ff; width: 14px; height: 14px; }
-
-    .client-search-box { position: relative; margin-bottom: 8px; }
-    .client-search-box input { width: 100%; padding: 8px 30px 8px 10px; background: rgba(5, 5, 12, 0.8); border: 1px solid rgba(0, 242, 255, 0.3); border-radius: 6px; color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 12px; }
-    .client-search-box input:focus { outline: none; border-color: #00f2ff; }
-    .client-search-box i { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: rgba(0, 242, 255, 0.6); pointer-events: none; }
-    .client-search-results { max-height: 150px; overflow-y: auto; border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; margin-top: 5px; background: rgba(5,5,12,0.9); }
-    .client-search-item { padding: 8px 10px; cursor: pointer; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 11px; display: flex; justify-content: space-between; align-items: center; }
-    .client-search-item:hover { background: rgba(0, 242, 255, 0.1); }
-    .client-search-item:last-child { border-bottom: none; }
-    .client-search-empty { padding: 10px; text-align: center; font-size: 10px; color: rgba(255,255,255,0.4); }
-
-    .price-hint { font-size: 9px; color: #00ff80; margin-top: 4px; display: block; font-family: 'Orbitron'; }
-    .day-warning { background: rgba(255, 204, 0, 0.15); border: 1px solid #ffcc00; color: #ffcc00; padding: 8px; border-radius: 6px; font-size: 10px; margin-bottom: 10px; display: none; font-family: 'Orbitron'; }
-
-    /* ΟΔΗΓΟΣ ΧΡΗΣΗΣ STYLES */
+    /* ΟΔΗΓΟΣ ΧΡΗΣΗΣ */
     .guide-section { margin-bottom: 15px; }
     .guide-section h4 { font-family: 'Orbitron'; color: #00f2ff; font-size: 12px; margin-bottom: 5px; border-bottom: 1px solid rgba(0, 242, 255, 0.2); padding-bottom: 3px; display: flex; align-items: center; gap: 5px; }
     .guide-section p { font-size: 11px; color: rgba(255,255,255,0.8); line-height: 1.5; margin-bottom: 5px; }
@@ -207,17 +129,7 @@
     @media (max-width: 768px) {
         .main-layout { grid-template-columns: 1fr; height: auto; overflow-y: auto; }
         .sidebar { height: auto; padding: 10px; margin-bottom: 10px; }
-        .sidebar-grid { grid-template-columns: 1fr 1fr; gap: 5px; }
-        .sidebar-btn { font-size: 9px; padding: 10px 2px; }
         .content-area { height: auto; overflow-y: visible; }
-        .data-table thead { display: none; } 
-        .data-table, .data-table tbody, .data-table tr, .data-table td { display: block; width: 100%; }
-        .data-table tr { margin-bottom: 10px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 10px; }
-        .data-table td { padding: 5px 0; border: none; text-align: right; display: flex; justify-content: space-between; align-items: center; }
-        .data-table td::before { content: attr(data-label); font-family: 'Orbitron', sans-serif; font-size: 9px; color: rgba(255,255,255,0.5); text-align: left; margin-right: 10px; }
-        .week-block { padding: 8px; }
-        .day-block { padding-left: 5px; }
-        .gender-block { padding-left: 5px; }
     }
     </style>
 </head>
@@ -225,23 +137,17 @@
     <div class="grid-bg"></div>
 
     <header class="main-header">
-        <h1 class="page-title">ΠΕΛΑΤΟΛΟΓΙΟ</h1>
+        <h1 class="page-title">ΗΜΕΡΟΛΟΓΙΟ</h1>
     </header>
 
     <main class="main-layout">
         <aside class="sidebar">
             <div class="sidebar-grid">
                 <button class="sidebar-btn nav-appointments active" onclick="showView('appointments')">
-                    <i class="fas fa-calendar-alt"></i> <span>ΡΑΝΤΕΒΟΥ</span>
-                </button>
-                <button class="sidebar-btn nav-clients" onclick="showView('clients')">
-                    <i class="fas fa-users"></i> <span>ΠΕΛΑΤΕΣ</span>
+                    <i class="fas fa-calendar-alt"></i> <span>ΗΜΕΡΟΛΟΓΙΟ</span>
                 </button>
                 <button class="sidebar-btn nav-settings" onclick="showView('settings')">
                     <i class="fas fa-cog"></i> <span>ΛΕΙΤΟΥΡΓΙΕΣ</span>
-                </button>
-                <button class="sidebar-btn nav-dashboard" onclick="showView('dashboard')">
-                    <i class="fas fa-chart-pie"></i> <span>DASHBOARD</span>
                 </button>
             </div>
         </aside>
@@ -249,7 +155,7 @@
         <section class="content-area" id="main-content"></section>
     </main>
 
-    <!-- MODAL 1: ΕΠΕΞΕΡΓΑΣΙΑ ΡΑΝΤΕΒΟΥ -->
+    <!-- MODAL 1: ΚΑΤΑΧΩΡΗΣΗ ΡΑΝΤΕΒΟΥ -->
     <div id="modal-appointment" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
@@ -266,42 +172,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label>ΠΕΛΑΤΗΣ</label>
-                    <div class="radio-group">
-                        <label><input type="radio" name="client-type" value="existing" checked onchange="toggleClientInput()"> Υπάρχων</label>
-                        <label><input type="radio" name="client-type" value="new" onchange="toggleClientInput()"> Νέος</label>
-                    </div>
-                    
-                    <div id="existing-client-container" style="display: block;">
-                        <div class="client-search-box">
-                            <input type="text" id="client-search-input" placeholder="Αναζήτηση πελάτη..." oninput="searchClientsForAppointment()" autocomplete="off">
-                            <i class="fas fa-search"></i>
-                        </div>
-                        <div id="client-search-results" class="client-search-results" style="display: none;"></div>
-                        <div id="selected-client-display" style="display: none; padding: 8px; background: rgba(0, 242, 255, 0.1); border: 1px solid rgba(0, 242, 255, 0.4); border-radius: 6px; font-size: 11px; font-family: 'Orbitron';">
-                            <span id="selected-client-name"></span>
-                            <button style="background:transparent; border:none; color:#ff4757; float:right; cursor:pointer;" onclick="clearSelectedClient()"><i class="fas fa-times"></i></button>
-                        </div>
-                    </div>
-                    
-                    <div id="new-client-fields" style="display: none;">
-                        <input type="text" id="new-client-name" class="modal-input" placeholder="Ονοματεπώνυμο" style="margin-bottom: 5px;">
-                        <input type="tel" id="new-client-phone" class="modal-input" placeholder="Τηλέφωνο" style="margin-bottom: 5px;">
-                        <select id="new-client-gender" class="modal-select">
-                            <option value="female">Γυναίκα</option>
-                            <option value="male">Άνδρας</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div id="same-day-warning" class="day-warning">
-                    <i class="fas fa-exclamation-triangle"></i> <span id="same-day-warning-text"></span>
-                </div>
-
-                <div class="form-group">
-                    <label>ΠΟΣΟ (€)</label>
-                    <input type="number" id="appointment-amount" class="modal-input" step="0.01" placeholder="0.00">
-                    <span id="auto-price-hint" class="price-hint" style="display: none;"><i class="fas fa-tag"></i> Αυτόματη συμπλήρωση από το προηγούμενο ραντεβού</span>
+                    <label>ΟΝΟΜΑ ΠΕΛΑΤΗ</label>
+                    <input type="text" id="appointment-name" class="modal-input" placeholder="Γράψτε το όνομα..." autocomplete="off">
                 </div>
 
                 <div style="display: flex; gap: 5px; margin-top: 15px;">
@@ -310,7 +182,7 @@
                 </div>
                 
                 <div style="margin-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px;" id="delete-app-container">
-                    <button class="btn-danger" style="width: 100%; padding: 8px; font-family: 'Orbitron'; font-size: 10px;" onclick="deleteCurrentAppointment()"><i class="fas fa-trash"></i> ΔΙΑΓΡΑΦΗ ΡΑΝΤΕΒΟΥ</button>
+                    <button class="btn-danger" style="width: 100%; padding: 8px; font-family: 'Orbitron'; font-size: 10px;" onclick="deleteCurrentAppointment()"><i class="fas fa-trash"></i> ΔΙΑΓΡΑΦΗ</button>
                 </div>
             </div>
         </div>
@@ -325,55 +197,31 @@
             </div>
             <div class="modal-body">
                 <div class="guide-section">
-                    <h4><i class="fas fa-calendar-alt" style="color: #00a2ff;"></i> Ραντεβού (Ημερολόγιο)</h4>
-                    <p>Στην αρχική οθόνη βλέπετε το ημερολόγιο του μήνα. <b>Καμία λίστα δεν ανοίγει αυτόματα.</b> Τα χρώματα στο ημερολόγιο σημαίνουν:</p>
+                    <h4><i class="fas fa-calendar-alt" style="color: #00a2ff;"></i> Το Ημερολόγιο</h4>
+                    <p>Στην αρχική οθόνη βλέπετε το ημερολόγιο του μήνα. Τα χρώματα σημαίνουν:</p>
                     <ul>
-                        <li><span style="color:#00a2ff; font-weight:bold;">Μπλε:</span> Ελεύθερη ημέρα.</li>
-                        <li><span style="color:#ffcc00; font-weight:bold;">Κίτρινο:</span> Υπάρχουν ραντεβού, αλλά έχει κενό.</li>
-                        <li><span style="color:#fff; font-weight:bold;">Λευκό:</span> Η ημέρα είναι πλήρης.</li>
-                        <li><span style="color:#ff4757; font-weight:bold;">Κόκκινο:</span> Η ημέρα είναι κλειδωμένη.</li>
+                        <li><span style="color:#00a2ff; font-weight:bold;">Μπλε:</span> Κενή ημέρα.</li>
+                        <li><span style="color:#ffcc00; font-weight:bold;">Κίτρινο:</span> Έχει ραντεβού.</li>
+                        <li><span style="color:#fff; font-weight:bold;">Λευκό:</span> Γεμάτη μέρα.</li>
+                        <li><span style="color:#ff4757; font-weight:bold;">Κόκκινο:</span> Κλειστά (Κυριακή).</li>
                     </ul>
                 </div>
 
                 <div class="guide-section">
-                    <h4><i class="fas fa-clock" style="color: #00a2ff;"></i> Άνοιγμα & Κλείσιμο Ωρών</h4>
-                    <p>Για να δείτε τις ώρες και να κλείσετε ραντεβού, <b>πατήστε πάνω σε μια ημερομηνία</b>. Αμέσως από κάτω θα εμφανιστεί η λίστα με τις ώρες εργασίας (08:00, 09:00, 15:00 - 21:00).</p>
-                    <p>Αν <b>ξαναπατήσετε την ίδια ημερομηνία</b>, η λίστα θα κλείσει και θα εξαφανιστεί, ώστε να έχετε καθαρή θέα του ημερολογίου.</p>
+                    <h4><i class="fas fa-clock" style="color: #00a2ff;"></i> Άνοιγμα Ωρών</h4>
+                    <p>Για να δείτε τις ώρες, <b>πατήστε πάνω σε μια ημερομηνία</b>. Αμέσως από κάτω θα εμφανιστεί η λίστα με τις ώρες (08:00, 09:00, 15:00 - 21:00).</p>
+                    <p>Αν <b>ξαναπατήσετε την ίδια ημερομηνία</b>, η λίστα θα κλείσει.</p>
                 </div>
 
                 <div class="guide-section">
-                    <h4><i class="fas fa-plus-circle" style="color: #00f2ff;"></i> Καταχώρηση Ραντεβού</h4>
-                    <p>Αφού ανοίξετε τη λίστα με τις ώρες, πατήστε πάνω σε μια <b>ελεύθερη ώρα</b> (με το μπλε περίγραμμα). Θα ανοίξει ένα παράθυρο για να γράψετε το όνομα του πελάτη και το ποσό. Δεν χρειάζεται να πληκτρολογήσετε εσείς την ώρα!</p>
-                    <p>Αν πατήσετε σε μια ώρα που έχει ήδη όνομα, μπορείτε να το επεξεργαστείτε ή να το διαγράψετε.</p>
-                </div>
-
-                <div class="guide-section">
-                    <h4><i class="fas fa-lock" style="color: #ff4757;"></i> Κλείδωμα & Ξεκλείδωμα Ημέρας</h4>
-                    <p>Το κλείδωμα απενεργοποιεί την προσθήκη νέων ραντεβού για μια συγκεκριμένη ημέρα (π.χ. αν θέλετε ρεπό).</p>
-                    <p><b>Πώς γίνεται:</b> Αφού ανοίξετε τη λίστα με τις ώρες, πατήστε το κόκκινο κουμπί <b>"ΚΛΕΙΔΩΜΑ ΗΜΕΡΑΣ"</b> στο κάτω μέρος. Η ημέρα θα γίνει κόκκινη και οι ώρες θα εξαφανιστούν.</p>
-                    <p><b>Πώς ξεκλειδώνει:</b> Αν αλλάξετε γνώμη και θέλετε να βάλετε ένα έκτακτο ραντεβού, πατήστε το μπλε κουμπί <b>"ΞΕΚΛΕΙΔΩΜΑ"</b>. Έτσι η ημέρα θα γίνει πάλι μπλε (ελεύθερη).</p>
-                    <p><i>Σημείωση: Οι Κυριακές είναι κλειδωμένες από προεπιλογή, αλλά μπορούν κι αυτές να ξεκλειδώσουν με τον ίδιο τρόπο.</i></p>
-                </div>
-
-                <div class="guide-section">
-                    <h4><i class="fas fa-tag" style="color: #00ff80;"></i> Αυτόματη Συμπλήρωση Ποσού</h4>
-                    <p>Όταν επιλέγετε έναν πελάτη που έχει ξανάρθει, το ποσό <b>συμπληρώνεται αυτόματα</b> από την τελευταία του επίσκεψη. <b>Μπορείτε πάντα να το αλλάξετε</b> χειροκίνητα.</p>
-                    <p>Αν προσπαθήσετε να βάλετε τον ίδιο πελάτη δύο φορές την ίδια μέρα, το σύστημα θα σας ειδοποιήσει με κίτρινη προειδοποίηση.</p>
-                </div>
-
-                <div class="guide-section">
-                    <h4><i class="fas fa-users" style="color: #9d00ff;"></i> Πελάτες</h4>
-                    <p>Εδώ βλέπετε όλο το πελατολόγιο. Μπορείτε να φιλτράρετε ανά φύλο (Άνδρες/Γυναίκες) ή να αναζητήσετε κάποιον πληκτρολογώντας το όνομά του. Η λίστα είναι ταξινομημένη αλφαβητικά.</p>
-                </div>
-
-                <div class="guide-section">
-                    <h4><i class="fas fa-chart-pie" style="color: #00f2ff;"></i> Dashboard (Οικονομικά)</h4>
-                    <p>Εδώ βλέπετε τα έσοδα και τα εκκρεμή. Επιλέξτε <b>Εκκρεμή</b> ή <b>Ανάλυση Εσόδων</b> και μετά <b>Μήνα</b> ή <b>Σύνολο</b>. Στο "Μήνα", μπορείτε να αλλάξετε μήνα με τα βελάκια. Τα κουμπιά <b>Άνδρες/Γυναίκες</b> φιλτράρουν τα ποσά και εμφανίζουν αναλυτική λίστα.</p>
+                    <h4><i class="fas fa-pen" style="color: #00f2ff;"></i> Γράψιμο Ονόματος</h4>
+                    <p>Πατήστε πάνω σε μια ελεύθερη ώρα. Θα ανοίξει ένα παράθυρο όπου γράφετε απλώς το όνομα του πελάτη και πατάτε Αποθήκευση.</p>
+                    <p>Αν πατήσετε σε ώρα που έχει ήδη όνομα, μπορείτε να το αλλάξετε ή να το διαγράψετε.</p>
                 </div>
 
                 <div class="guide-section">
                     <h4><i class="fas fa-cog" style="color: #fff;"></i> Λειτουργίες</h4>
-                    <p><b>Backup:</b> Κάντε Εξαγωγή για να κρατήσετε αντίγραφο ασφαλείας των δεδομένων σας, και Εισαγωγή για να τα επαναφέρετε. <br><b>Επικίνδυνη Ζώνη:</b> Διαγράφει ΟΛΑ τα δεδομένα (χρησιμοποιήστε το με προσοχή!).</p>
+                    <p><b>Backup:</b> Κάντε Εξαγωγή για να κρατήσετε αντίγραφο ασφαλείας των ραντεβού σας, και Εισαγωγή για να τα επαναφέρετε.</p>
                 </div>
 
                 <div class="guide-contact">
@@ -390,39 +238,15 @@
     /* ===========================================
        APP LOGIC
        =========================================== */
-    let clients = JSON.parse(localStorage.getItem('massage_clients')) || [];
-    let appointments = JSON.parse(localStorage.getItem('massage_appointments')) || [];
-    let daysInfo = JSON.parse(localStorage.getItem('massage_days_info')) || {}; 
+    let appointments = JSON.parse(localStorage.getItem('simple_appointments')) || [];
     
-    let currentCalDate = new Date(); // Ο μήνας που βλέπουμε
-    let activeSelectedDate = null; // Η ημέρα που έχουμε πατήσει (null = καμία)
+    let currentCalDate = new Date(); 
+    let activeSelectedDate = null; 
     
-    let selectedClientId = null;
-    
-    // Views State
-    let viewClientFilter = null; 
-    let viewClientSearch = '';
-    
-    let dashFinanceTab = null; 
-    let dashIncomePeriod = null; 
-    let dashFinanceGenderFilter = null; 
-    let dashMonthDate = new Date();
-
     const monthNamesFull = ["Ιανουάριος", "Φεβρουάριος", "Μάρτιος", "Απρίλιος", "Μάιος", "Ιούνιος", "Ιούλιος", "Αύγουστος", "Σεπτέμβριος", "Οκτώβριος", "Νοέμβριος", "Δεκέμβριος"];
     const dayNamesFull = ['Κυριακή', 'Δευτέρα', 'Τρίτη', 'Τετάρτη', 'Πέμπτη', 'Παρασκευή', 'Σάββατο'];
 
     document.addEventListener('DOMContentLoaded', () => { showView('appointments'); });
-
-    function getClientColor(client) {
-        if (!client) return '#ffffff';
-        if (client.gender === 'male') return '#00a2ff';
-        if (client.gender === 'female') return '#ff69b4';
-        return '#cccccc';
-    }
-
-    function sortClientsAlphabetically(arr) {
-        return arr.sort((a, b) => a.name.localeCompare(b.name, 'el', { sensitivity: 'base' }));
-    }
 
     function showView(viewName) {
         document.querySelectorAll('.sidebar-btn').forEach(btn => btn.classList.remove('active'));
@@ -430,19 +254,16 @@
         
         const container = document.getElementById('main-content');
         if (viewName === 'appointments') renderAppointments(container);
-        else if (viewName === 'clients') renderClientsView(container);
         else if (viewName === 'settings') renderSettings(container);
-        else if (viewName === 'dashboard') renderDashboard(container);
     }
 
     // ==========================================
-    // 1. APPOINTMENTS VIEW (TIMELINE)
+    // 1. APPOINTMENTS VIEW
     // ==========================================
     function renderAppointments(container) {
         let html = `
-            <h2 class="section-title">ΡΑΝΤΕΒΟΥ</h2>
+            <h2 class="section-title">ΗΜΕΡΟΛΟΓΙΟ</h2>
             
-            <!-- Ημερολόγιο -->
             <div class="calendar-container">
                 <div class="calendar-header">
                     <button class="calendar-nav-btn" onclick="changeCalMonth(-1)"><i class="fas fa-chevron-left"></i></button>
@@ -453,15 +274,11 @@
             </div>
         `;
 
-        // Αν υπάρχει επιλεγμένη ημέρα, φτιάχνουμε το timeline
         if (activeSelectedDate) {
             const dateStr = activeSelectedDate;
             const d = new Date(dateStr);
             const isSunday = d.getDay() === 0;
-            const info = daysInfo[dateStr] || {};
-            let isClosed = info.isClosed === true;
-            if (isSunday && !info.isUnlocked) isClosed = true;
-
+            
             const dateDisplay = `${dayNamesFull[d.getDay()]} ${d.getDate()} ${monthNamesFull[d.getMonth()]} ${d.getFullYear()}`;
 
             html += `
@@ -474,30 +291,18 @@
                         <div class="timeline-container">
             `;
 
-            if (isClosed) {
-                html += `
-                    <div style="text-align:center; padding: 20px;">
-                        <p style="color:#ff4757; font-family:'Orbitron'; margin-bottom: 10px;">Η ΗΜΕΡΑ ΕΙΝΑΙ ΚΛΕΙΔΩΜΕΝΗ</p>
-                        <button class="btn-primary" style="background: rgba(0, 162, 255, 0.15); border: 1px solid #00a2ff; color: #00a2ff;" onclick="toggleDayLock('${dateStr}', false)"><i class="fas fa-unlock"></i> ΞΕΚΛΕΙΔΩΜΑ</button>
-                    </div>
-                `;
+            if (isSunday) {
+                html += `<p style="text-align:center; padding:20px; color:#ff4757; font-family:'Orbitron';">ΟΙ ΚΥΡΙΑΚΕΣ ΕΙΝΑΙ ΚΛΕΙΣΤΕΣ</p>`;
             } else {
                 // 08:00 & 09:00
                 html += generateTimeSlot(8, 9, dateStr);
                 html += generateTimeSlot(9, 10, dateStr);
                 
-                // Κενό 10:00 - 15:00 (Ανενεργό)
+                // Κενό 10:00 - 15:00
                 html += `<div class="time-slot disabled-slot"><div class="time-label">10:00 - 15:00</div><div class="slot-content"><span class="slot-empty-text">ΜΗ ΔΙΑΘΕΣΙΜΟ</span></div></div>`;
                 
                 // 15:00 έως 22:00
                 for (let i = 15; i < 22; i++) html += generateTimeSlot(i, i+1, dateStr);
-
-                // Κουμπί Κλειδώματος
-                html += `
-                    <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1);">
-                        <button class="btn-danger" style="width:100%; padding:8px; font-family:'Orbitron'; font-size:10px;" onclick="toggleDayLock('${dateStr}', true)"><i class="fas fa-lock"></i> ΚΛΕΙΔΩΜΑ ΗΜΕΡΑΣ</button>
-                    </div>
-                `;
             }
 
             html += `
@@ -520,25 +325,21 @@
         let content = '';
         
         if (app) {
-            const client = clients.find(c => c.id === app.clientId) || { name: 'Άγνωστος', gender: 'other' };
-            const color = getClientColor(client);
             slotClass = 'full-slot';
             content = `
                 <div class="slot-content" onclick="editAppointment(${app.id})">
                     <div>
-                        <div class="slot-name" style="color:${color};">${client.name}</div>
-                        <div style="font-size:9px; color:rgba(255,255,255,0.5);">${client.phone || ''}</div>
+                        <div class="slot-name" style="color:#fff;">${app.name}</div>
                     </div>
                     <div style="display:flex; align-items:center; gap:10px;">
-                        <div class="slot-amount">${parseFloat(app.amount).toFixed(2)} €</div>
-                        <div class="slot-icons"><i class="fas fa-pen"></i></div>
+                        <div class="slot-icons"><i class="fas fa-pen" style="color:#00f2ff;"></i></div>
                     </div>
                 </div>
             `;
         } else {
             content = `
                 <div class="slot-content" onclick="openNewAppointmentModal('${dateStr}', '${timeStr}')">
-                    <span class="slot-empty-text">Προσθήκη ραντεβού...</span>
+                    <span class="slot-empty-text">Κενή ώρα (Προσθήκη...)</span>
                     <i class="fas fa-plus" style="color:#00a2ff; opacity:0.5;"></i>
                 </div>
             `;
@@ -573,15 +374,11 @@
             const d = new Date(dateStr);
             const isSunday = d.getDay() === 0;
             const dayApps = appointments.filter(app => app.date === dateStr);
-            const info = daysInfo[dateStr] || {};
-            
-            let isClosed = info.isClosed === true;
-            if (isSunday && !info.isUnlocked) isClosed = true;
             
             let classes = 'calendar-cell ';
             let label = '';
 
-            if (isClosed) {
+            if (isSunday) {
                 classes += 'closed';
                 label = `<div class="calendar-day-info">Κλειστό</div>`;
             } else if (dayApps.length > 0) {
@@ -601,27 +398,12 @@
             if (dateStr === activeSelectedDate) classes += ' selected';
 
             grid.innerHTML += `
-                <div class="${classes}" onclick="selectDay('${dateStr}')">
+                <div class="${classes}" onclick="selectDay('${dateStr}', ${isSunday})">
                     <div class="calendar-day-num">${day}</div>
                     ${label}
                 </div>
             `;
         }
-    }
-
-    function changeCalMonth(dir) {
-        currentCalDate.setMonth(currentCalDate.getMonth() + dir);
-        // Δεν αλλάζουμε το activeSelectedDate, απλά ξανασχεδιάζουμε
-        renderAppointments(document.getElementById('main-content'));
-    }
-
-    function selectDay(dateStr) {
-        if (activeSelectedDate === dateStr) {
-            activeSelectedDate = null; // Κλείσιμο λίστας
-        } else {
-            activeSelectedDate = dateStr; // Άνοιγμα λίστας
-        }
-        renderAppointments(document.getElementById('main-content'));
     }
 
     function checkIsDayFull(dateStr, dayApps) {
@@ -630,106 +412,40 @@
         return availableSlots.every(hour => bookedTimes.includes(hour));
     }
 
-    function toggleDayLock(dateStr, lock) {
-        if (!daysInfo[dateStr]) daysInfo[dateStr] = {};
-        const d = new Date(dateStr);
-        const isSunday = d.getDay() === 0;
+    function changeCalMonth(dir) {
+        currentCalDate.setMonth(currentCalDate.getMonth() + dir);
+        renderAppointments(document.getElementById('main-content'));
+    }
+
+    function selectDay(dateStr, isSunday) {
         if (isSunday) {
-            daysInfo[dateStr].isUnlocked = !lock;
-        } else {
-            daysInfo[dateStr].isClosed = lock;
+            showToast('Οι Κυριακές είναι κλειστές.');
+            return;
         }
-        localStorage.setItem('massage_days_info', JSON.stringify(daysInfo));
-        showToast(lock ? 'Η ημέρα κλείδωσε!' : 'Η ημέρα ξεκλείδωσε!');
+        if (activeSelectedDate === dateStr) {
+            activeSelectedDate = null; 
+        } else {
+            activeSelectedDate = dateStr; 
+        }
         renderAppointments(document.getElementById('main-content'));
     }
 
     // ==========================================
-    // ΑΝΑΖΗΤΗΣΗ ΠΕΛΑΤΩΝ
+    // MODAL ACTIONS
     // ==========================================
-    function searchClientsForAppointment() {
-        const query = document.getElementById('client-search-input').value.trim().toLowerCase();
-        const resultsDiv = document.getElementById('client-search-results');
+    function openNewAppointmentModal(dateStr, timeStr) {
+        document.getElementById('edit-appointment-id').value = "";
+        document.getElementById('appointment-date').value = dateStr;
+        document.getElementById('appointment-time').value = timeStr;
+        document.getElementById('display-appointment-time').textContent = `${formatDate(dateStr)} στις ${timeStr}`;
+        document.getElementById('modal-app-title').textContent = "ΝΕΟ ΡΑΝΤΕΒΟΥ";
         
-        if (query.length === 0) {
-            resultsDiv.style.display = 'none';
-            return;
-        }
+        document.getElementById('delete-app-container').style.display = 'none';
+        document.getElementById('appointment-name').value = '';
 
-        let matches = clients.filter(c => c.name.toLowerCase().includes(query) || c.phone.includes(query));
-        matches = sortClientsAlphabetically(matches);
-        
-        if (matches.length === 0) {
-            resultsDiv.innerHTML = '<div class="client-search-empty">Δεν βρέθηκαν πελάτες</div>';
-            resultsDiv.style.display = 'block';
-            return;
-        }
-
-        resultsDiv.innerHTML = matches.slice(0, 20).map(c => {
-            const color = getClientColor(c);
-            return `<div class="client-search-item" onclick="selectClientForAppointment(${c.id})">
-                <span style="color:${color}; font-family:'Orbitron';">${c.name}</span>
-                <span style="color:rgba(255,255,255,0.5); font-size:9px;">${c.phone}</span>
-            </div>`;
-        }).join('');
-        resultsDiv.style.display = 'block';
+        document.getElementById('modal-appointment').style.display = 'flex';
     }
 
-    function selectClientForAppointment(clientId) {
-        const client = clients.find(c => c.id === clientId);
-        if (!client) return;
-        selectedClientId = clientId;
-        document.getElementById('client-search-input').value = '';
-        document.getElementById('client-search-results').style.display = 'none';
-        document.getElementById('selected-client-display').style.display = 'block';
-        document.getElementById('selected-client-name').textContent = `${client.name} (${client.phone})`;
-        document.getElementById('client-search-input').style.display = 'none';
-
-        const clientApps = appointments.filter(a => a.clientId === clientId && a.status === 'completed').sort((a,b) => new Date(b.date) - new Date(a.date));
-        if (clientApps.length > 0) {
-            document.getElementById('appointment-amount').value = clientApps[0].amount;
-            document.getElementById('auto-price-hint').style.display = 'block';
-        } else {
-            document.getElementById('auto-price-hint').style.display = 'none';
-        }
-
-        checkSameDayAppointment();
-    }
-
-    function clearSelectedClient() {
-        selectedClientId = null;
-        document.getElementById('selected-client-display').style.display = 'none';
-        document.getElementById('client-search-input').style.display = 'block';
-        document.getElementById('client-search-input').value = '';
-        document.getElementById('client-search-results').style.display = 'none';
-        document.getElementById('auto-price-hint').style.display = 'none';
-        document.getElementById('same-day-warning').style.display = 'none';
-    }
-
-    function checkSameDayAppointment() {
-        const dateVal = document.getElementById('appointment-date').value;
-        const warningBox = document.getElementById('same-day-warning');
-        const warningText = document.getElementById('same-day-warning-text');
-        
-        if (!selectedClientId || !dateVal) {
-            warningBox.style.display = 'none';
-            return;
-        }
-
-        const editId = document.getElementById('edit-appointment-id').value;
-        const sameDayApps = appointments.filter(a => a.clientId === selectedClientId && a.date === dateVal && a.id != editId);
-
-        if (sameDayApps.length > 0) {
-            warningBox.style.display = 'block';
-            warningText.textContent = `Ο πελάτης έχει ήδη ραντεβού αυτή την ημέρα στις ${sameDayApps[0].time}!`;
-        } else {
-            warningBox.style.display = 'none';
-        }
-    }
-
-    // ==========================================
-    // ΕΠΕΞΕΡΓΑΣΙΑ / ΔΙΑΓΡΑΦΗ ΡΑΝΤΕΒΟΥ
-    // ==========================================
     function editAppointment(id) {
         const app = appointments.find(a => a.id === id);
         if (!app) return;
@@ -741,209 +457,50 @@
         document.getElementById('modal-app-title').textContent = "ΕΠΕΞΕΡΓΑΣΙΑ";
         
         document.getElementById('delete-app-container').style.display = 'block';
+        document.getElementById('appointment-name').value = app.name;
 
-        document.querySelector('input[name="client-type"][value="existing"]').checked = true;
-        toggleClientInput();
-        clearSelectedClient();
-        
-        const client = clients.find(c => c.id === app.clientId);
-        if (client) {
-            selectedClientId = client.id;
-            document.getElementById('client-search-input').style.display = 'none';
-            document.getElementById('selected-client-display').style.display = 'block';
-            document.getElementById('selected-client-name').textContent = `${client.name} (${client.phone})`;
+        document.getElementById('modal-appointment').style.display = 'flex';
+    }
+
+    function saveAppointment() {
+        const editId = document.getElementById('edit-appointment-id').value;
+        const date = document.getElementById('appointment-date').value;
+        const time = document.getElementById('appointment-time').value;
+        const name = document.getElementById('appointment-name').value.trim();
+
+        if (!name) { alert('Παρακαλώ γράψτε το όνομα του πελάτη!'); return; }
+
+        if (editId) {
+            const index = appointments.findIndex(a => a.id == editId);
+            if (index !== -1) {
+                appointments[index].name = name;
+            }
+            showToast('Το ραντεβού ενημερώθηκε!');
+        } else {
+            appointments.push({ id: Date.now(), date, time, name });
+            showToast('Το ραντεβού καταχωρήθηκε!');
         }
 
-        document.getElementById('appointment-amount').value = app.amount;
-        document.getElementById('auto-price-hint').style.display = 'none';
-        
-        checkSameDayAppointment();
-        
-        document.getElementById('modal-appointment').style.display = 'flex';
+        localStorage.setItem('simple_appointments', JSON.stringify(appointments));
+        closeModal('modal-appointment');
+        renderAppointments(document.getElementById('main-content'));
     }
 
     function deleteCurrentAppointment() {
         const id = document.getElementById('edit-appointment-id').value;
         if (!id) return;
         
-        if (!confirm('Είστε σίγουροι ότι θέλετε να διαγράψετε αυτό το ραντεβού;')) return;
+        if (!confirm('Είστε σίγουροι ότι θέλετε να το διαγράψετε;')) return;
         
         appointments = appointments.filter(a => a.id != id);
-        localStorage.setItem('massage_appointments', JSON.stringify(appointments));
+        localStorage.setItem('simple_appointments', JSON.stringify(appointments));
         showToast('Το ραντεβού διαγράφηκε.');
         closeModal('modal-appointment');
         renderAppointments(document.getElementById('main-content'));
     }
 
-    function openNewAppointmentModal(dateStr, timeStr) {
-        document.getElementById('edit-appointment-id').value = "";
-        document.getElementById('appointment-date').value = dateStr;
-        document.getElementById('appointment-time').value = timeStr;
-        document.getElementById('display-appointment-time').textContent = `${formatDate(dateStr)} στις ${timeStr}`;
-        document.getElementById('modal-app-title').textContent = "ΝΕΟ ΡΑΝΤΕΒΟΥ";
-        
-        document.getElementById('delete-app-container').style.display = 'none';
-        
-        document.getElementById('new-client-name').value = '';
-        document.getElementById('new-client-phone').value = '';
-        document.getElementById('appointment-amount').value = '';
-        document.querySelector('input[name="client-type"][value="existing"]').checked = true;
-        toggleClientInput();
-        clearSelectedClient();
-
-        document.getElementById('modal-appointment').style.display = 'flex';
-    }
-
-    function toggleClientInput() {
-        const type = document.querySelector('input[name="client-type"]:checked').value;
-        document.getElementById('existing-client-container').style.display = type === 'existing' ? 'block' : 'none';
-        document.getElementById('new-client-fields').style.display = type === 'new' ? 'block' : 'none';
-        if (type === 'new') {
-            clearSelectedClient();
-            document.getElementById('auto-price-hint').style.display = 'none';
-        }
-    }
-
-    function saveAppointment() {
-        const editId = document.getElementById('edit-appointment-id').value;
-        const type = document.querySelector('input[name="client-type"]:checked').value;
-        const date = document.getElementById('appointment-date').value;
-        const time = document.getElementById('appointment-time').value;
-        const amount = document.getElementById('appointment-amount').value;
-
-        if (!amount || parseFloat(amount) <= 0) { alert('Εισάγετε έγκυρο ποσό!'); return; }
-
-        let clientId;
-        if (type === 'new') {
-            const name = document.getElementById('new-client-name').value.trim();
-            const phone = document.getElementById('new-client-phone').value.trim();
-            const gender = document.getElementById('new-client-gender').value;
-            if (!name || !phone) { alert('Συμπληρώστε όνομα και τηλέφωνο!'); return; }
-            
-            const existing = clients.find(c => c.phone === phone);
-            if (existing) { clientId = existing.id; }
-            else {
-                clientId = Date.now();
-                clients.push({ id: clientId, name, phone, gender });
-                localStorage.setItem('massage_clients', JSON.stringify(clients));
-            }
-        } else {
-            if (!selectedClientId) { alert('Αναζητήστε και επιλέξτε πελάτη!'); return; }
-            clientId = selectedClientId;
-        }
-
-        if (editId) {
-            const index = appointments.findIndex(a => a.id == editId);
-            if (index !== -1) {
-                appointments[index].clientId = clientId;
-                appointments[index].amount = parseFloat(amount);
-            }
-            showToast('Το ραντεβού ενημερώθηκε!');
-        } else {
-            appointments.push({ id: Date.now(), clientId, date, time, amount: parseFloat(amount), status: 'pending' });
-            showToast('Το ραντεβού καταχωρήθηκε!');
-        }
-
-        localStorage.setItem('massage_appointments', JSON.stringify(appointments));
-        closeModal('modal-appointment');
-        renderAppointments(document.getElementById('main-content'));
-    }
-
     // ==========================================
-    // 2. CLIENTS VIEW
-    // ==========================================
-    function renderClientsView(container) {
-        const allClientsCount = clients.length;
-        const femaleClientsCount = clients.filter(c => c.gender === 'female').length;
-        const maleClientsCount = clients.filter(c => c.gender === 'male').length;
-
-        container.innerHTML = `
-            <h2 class="section-title">ΠΕΛΑΤΕΣ</h2>
-            <div class="data-table-wrapper" style="margin-bottom: 10px;">
-                <div class="dash-btn-grid">
-                    <button class="dash-btn ${viewClientFilter==='all'?'active':''}" onclick="toggleViewClientFilter('all')">
-                        <i class="fas fa-users"></i> <span>ΟΛΟΙ (${allClientsCount})</span>
-                    </button>
-                    <button class="dash-btn btn-female ${viewClientFilter==='female'?'active':''}" onclick="toggleViewClientFilter('female')">
-                        <i class="fas fa-venus"></i> <span>ΓΥΝΑΙΚΕΣ (${femaleClientsCount})</span>
-                    </button>
-                    <button class="dash-btn btn-male ${viewClientFilter==='male'?'active':''}" onclick="toggleViewClientFilter('male')">
-                        <i class="fas fa-mars"></i> <span>ΑΝΔΡΕΣ (${maleClientsCount})</span>
-                    </button>
-                </div>
-                <div id="view-client-area" style="display: ${viewClientFilter ? 'block' : 'none'};"></div>
-            </div>
-        `;
-
-        if (viewClientFilter) renderViewClientList();
-    }
-
-    function toggleViewClientFilter(filter) {
-        if (viewClientFilter === filter) viewClientFilter = null; 
-        else { viewClientFilter = filter; viewClientSearch = ''; }
-        renderClientsView(document.getElementById('main-content'));
-    }
-    
-    function onViewClientSearch(val) {
-        viewClientSearch = val;
-        renderViewClientList();
-    }
-
-    function renderViewClientList() {
-        const area = document.getElementById('view-client-area');
-        if (!area) return;
-        
-        area.innerHTML = `
-            <div class="client-search-box" style="margin-bottom: 8px;">
-                <input type="text" id="view-client-search" placeholder="Αναζήτηση πελάτη..." value="${viewClientSearch}" oninput="onViewClientSearch(this.value)" autocomplete="off">
-                <i class="fas fa-search"></i>
-            </div>
-            <div id="view-client-list-inner"></div>
-        `;
-
-        const innerArea = document.getElementById('view-client-list-inner');
-        let filtered = clients;
-        
-        if (viewClientFilter === 'female') filtered = filtered.filter(c => c.gender === 'female');
-        if (viewClientFilter === 'male') filtered = filtered.filter(c => c.gender === 'male');
-        
-        const q = viewClientSearch.trim().toLowerCase();
-        if (q.length > 0) {
-            filtered = filtered.filter(c => c.name.toLowerCase().includes(q) || c.phone.includes(q));
-        }
-
-        filtered = sortClientsAlphabetically(filtered);
-
-        if (filtered.length === 0) {
-            innerArea.innerHTML = '<p style="text-align:center; padding:10px; color:rgba(255,255,255,0.4); font-size:11px;">Δεν βρέθηκαν πελάτες.</p>';
-            return;
-        }
-
-        innerArea.innerHTML = `
-            <table class="data-table">
-                <thead><tr><th>ΟΝΟΜΑ</th><th>ΤΗΛΕΦΩΝΟ</th><th>ΦΥΛΟ</th><th>ΕΠΙΣΚΕΨΕΙΣ</th><th>ΕΣΟΔΑ</th></tr></thead>
-                <tbody>
-                    ${filtered.map(client => {
-                        const clientApps = appointments.filter(app => app.clientId === client.id);
-                        const totalVisits = clientApps.filter(a => a.status === 'completed').length;
-                        const totalSpent = clientApps.filter(a => a.status === 'completed').reduce((sum, a) => sum + parseFloat(a.amount || 0), 0);
-                        const genderLabel = client.gender === 'male' ? 'Άνδρας' : client.gender === 'female' ? 'Γυναίκα' : 'Άλλο';
-                        const color = getClientColor(client);
-                        return `<tr>
-                            <td data-label="ΟΝΟΜΑ" style="color:${color}; font-family:'Orbitron';">${client.name}</td>
-                            <td data-label="ΤΗΛΕΦΩΝΟ">${client.phone}</td>
-                            <td data-label="ΦΥΛΟ" style="color:${color};">${genderLabel}</td>
-                            <td data-label="ΕΠΙΣΚΕΨΕΙΣ" style="color:#00f2ff;">${totalVisits}</td>
-                            <td data-label="ΕΣΟΔΑ" style="color:#9d00ff; font-weight:bold;">${totalSpent.toFixed(2)} €</td>
-                        </tr>`;
-                    }).join('')}
-                </tbody>
-            </table>
-        `;
-    }
-
-    // ==========================================
-    // 3. ΛΕΙΤΟΥΡΓΙΕΣ
+    // SETTINGS & BACKUP
     // ==========================================
     function renderSettings(container) {
         container.innerHTML = `
@@ -971,295 +528,40 @@
         `;
     }
 
-    // ==========================================
-    // 4. DASHBOARD
-    // ==========================================
-    function renderDashboard(container) {
-        let pendingCount = 0;
-        let incomeCount = 0;
-
-        appointments.forEach(app => {
-            if (app.status === 'pending') pendingCount++;
-            else if (app.status === 'completed') incomeCount++;
-        });
-
-        let pendingSumAll = 0, pendingSumM = 0, pendingSumF = 0;
-        let incomeSumAll = 0, incomeSumM = 0, incomeSumF = 0;
-
-        const selectedMonthStr = `${dashMonthDate.getFullYear()}-${String(dashMonthDate.getMonth() + 1).padStart(2, '0')}`;
-        const displayMonthTitle = `${monthNamesFull[dashMonthDate.getMonth()]} ${dashMonthDate.getFullYear()}`;
-
-        appointments.forEach(app => {
-            const client = clients.find(c => c.id === app.clientId);
-            const amt = parseFloat(app.amount || 0);
-            
-            let include = false;
-            if (dashIncomePeriod === 'total') {
-                include = true;
-            } else if (dashIncomePeriod === 'month') {
-                if (app.date.startsWith(selectedMonthStr)) include = true;
-            }
-
-            if (!dashIncomePeriod) include = false;
-
-            if (include) {
-                if (app.status === 'pending') {
-                    pendingSumAll += amt;
-                    if (client && client.gender === 'male') pendingSumM += amt;
-                    if (client && client.gender === 'female') pendingSumF += amt;
-                } else if (app.status === 'completed') {
-                    incomeSumAll += amt;
-                    if (client && client.gender === 'male') incomeSumM += amt;
-                    if (client && client.gender === 'female') incomeSumF += amt;
-                }
-            }
-        });
-
-        const activeSumAll = dashFinanceTab === 'pending' ? pendingSumAll : incomeSumAll;
-        const activeSumM = dashFinanceTab === 'pending' ? pendingSumM : incomeSumM;
-        const activeSumF = dashFinanceTab === 'pending' ? pendingSumF : incomeSumF;
-
-        container.innerHTML = `
-            <h2 class="section-title">DASHBOARD</h2>
-            
-            <div class="data-table-wrapper" style="padding: 10px;">
-                <div style="margin-bottom: 8px;">
-                    <h3 style="color: #00ff80; font-family: 'Orbitron'; font-size: 11px;">ΟΙΚΟΝΟΜΙΚΑ</h3>
-                </div>
-                
-                <div class="dash-btn-grid">
-                    <button class="dash-btn btn-pending ${dashFinanceTab==='pending'?'active':''}" onclick="toggleFinanceTab('pending')">
-                        <i class="fas fa-hourglass-half"></i> <span>ΕΚΚΡΕΜΗ (${pendingCount})</span>
-                    </button>
-                    <button class="dash-btn btn-income ${dashFinanceTab==='income'?'active':''}" onclick="toggleFinanceTab('income')">
-                        <i class="fas fa-chart-line"></i> <span>ΑΝΑΛΥΣΗ ΕΣΟΔΩΝ (${incomeCount})</span>
-                    </button>
-                </div>
-
-                <div class="dash-btn-grid" style="margin-top: 10px; ${dashFinanceTab ? 'display: grid;' : 'display: none'}; grid-template-columns: 1fr 1fr;">
-                    <button class="dash-btn ${dashIncomePeriod==='month'?'active':''}" onclick="toggleIncomePeriod('month')">
-                        <i class="fas fa-calendar-alt"></i> <span>ΜΗΝΑΣ</span>
-                    </button>
-                    <button class="dash-btn ${dashIncomePeriod==='total'?'active':''}" onclick="toggleIncomePeriod('total')">
-                        <i class="fas fa-infinity"></i> <span>ΣΥΝΟΛΟ</span>
-                    </button>
-                </div>
-
-                <div class="month-nav-wrapper" style="display: ${dashIncomePeriod === 'month' ? 'flex' : 'none'};">
-                    <button class="month-nav-btn" onclick="changeDashMonth(-1)"><i class="fas fa-chevron-left"></i></button>
-                    <div class="month-display">${displayMonthTitle}</div>
-                    <button class="month-nav-btn" onclick="changeDashMonth(1)"><i class="fas fa-chevron-right"></i></button>
-                </div>
-
-                <div class="dash-btn-grid" style="margin-top: 10px; ${dashFinanceTab && dashIncomePeriod ? 'display: grid;' : 'display: none'};" id="finance-gender-grid">
-                    <button class="dash-btn ${dashFinanceGenderFilter==='all'?'active':''}" onclick="toggleFinanceGenderFilter('all')">
-                        <i class="fas fa-calculator"></i> <span>ΣΥΝΟΛΟ</span>
-                        <div class="amount-val">${activeSumAll.toFixed(2)} €</div>
-                    </button>
-                    <button class="dash-btn btn-female ${dashFinanceGenderFilter==='female'?'active':''}" onclick="toggleFinanceGenderFilter('female')">
-                        <i class="fas fa-venus"></i> <span>ΓΥΝΑΙΚΕΣ</span>
-                        <div class="amount-val">${activeSumF.toFixed(2)} €</div>
-                    </button>
-                    <button class="dash-btn btn-male ${dashFinanceGenderFilter==='male'?'active':''}" onclick="toggleFinanceGenderFilter('male')">
-                        <i class="fas fa-mars"></i> <span>ΑΝΔΡΕΣ</span>
-                        <div class="amount-val">${activeSumM.toFixed(2)} €</div>
-                    </button>
-                </div>
-
-                <div id="dashboard-finance-area" style="display: ${dashFinanceGenderFilter ? 'block' : 'none'};"></div>
-            </div>
-        `;
-
-        if (dashFinanceGenderFilter) showDashboardFinanceList();
+    function exportData() {
+        const data = { appointments };
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = `backup_imerologio.json`;
+        a.click();
+        showToast('Backup OK!');
     }
 
-    function toggleFinanceTab(tab) {
-        if (dashFinanceTab === tab) {
-            dashFinanceTab = null;
-            dashIncomePeriod = null;
-            dashFinanceGenderFilter = null;
-        } else {
-            dashFinanceTab = tab;
-            dashIncomePeriod = null;
-            dashFinanceGenderFilter = null;
-        }
-        renderDashboard(document.getElementById('main-content'));
-    }
-    
-    function toggleIncomePeriod(period) {
-        if (dashIncomePeriod === period) {
-            dashIncomePeriod = null;
-            dashFinanceGenderFilter = null;
-        } else {
-            dashIncomePeriod = period;
-            dashFinanceGenderFilter = null;
-            if (period === 'month') dashMonthDate = new Date(); 
-        }
-        renderDashboard(document.getElementById('main-content'));
+    function importData(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            try {
+                const data = JSON.parse(e.target.result);
+                if (data.appointments) {
+                    appointments = data.appointments;
+                    localStorage.setItem('simple_appointments', JSON.stringify(appointments));
+                    showToast('Εισαγωγή OK!');
+                    showView('appointments');
+                } else alert('Μη έγκυρο αρχείο.');
+            } catch (err) { alert('Σφάλμα.'); }
+        };
+        reader.readAsText(file);
     }
 
-    function changeDashMonth(dir) {
-        dashMonthDate.setMonth(dashMonthDate.getMonth() + dir);
-        dashFinanceGenderFilter = null; 
-        renderDashboard(document.getElementById('main-content'));
-    }
-    
-    function toggleFinanceGenderFilter(gender) {
-        if (dashFinanceGenderFilter === gender) {
-            dashFinanceGenderFilter = null;
-        } else {
-            dashFinanceGenderFilter = gender;
-        }
-        renderDashboard(document.getElementById('main-content'));
-    }
-
-    function showDashboardFinanceList() {
-        const area = document.getElementById('dashboard-finance-area');
-        if (!area) return;
-
-        const selectedMonthStr = `${dashMonthDate.getFullYear()}-${String(dashMonthDate.getMonth() + 1).padStart(2, '0')}`;
-
-        let listToRender = [];
-        
-        if (dashFinanceTab === 'pending') {
-            listToRender = appointments.filter(a => {
-                if (a.status !== 'pending') return false;
-                if (dashIncomePeriod === 'month') {
-                    if (!a.date.startsWith(selectedMonthStr)) return false;
-                }
-                if (dashFinanceGenderFilter === 'all') return true;
-                const client = clients.find(c => c.id === a.clientId);
-                return client && client.gender === dashFinanceGenderFilter;
-            });
-        } else if (dashFinanceTab === 'income') {
-            listToRender = appointments.filter(a => {
-                if (a.status !== 'completed') return false;
-                if (dashIncomePeriod === 'month') {
-                    if (!a.date.startsWith(selectedMonthStr)) return false;
-                }
-                if (dashFinanceGenderFilter === 'all') return true;
-                const client = clients.find(c => c.id === a.clientId);
-                return client && client.gender === dashFinanceGenderFilter;
-            });
-        }
-
-        if (listToRender.length === 0) {
-            area.innerHTML = `<p style="text-align:center; padding:10px; color:rgba(255,255,255,0.4); font-size:11px;">Δεν υπάρχουν εγγραφές για αυτή την επιλογή.</p>`;
-            return;
-        }
-
-        listToRender.sort((a,b) => new Date(b.date) - new Date(a.date));
-
-        const groupedData = {};
-
-        listToRender.forEach(app => {
-            const d = new Date(app.date);
-            const m = d.getMonth();
-            const y = d.getFullYear();
-            const monthKey = `${monthNamesFull[m]} ${y}`;
-
-            const dayOfWeek = d.getDay() || 7; 
-            const startOfWeek = new Date(d);
-            startOfWeek.setDate(d.getDate() - dayOfWeek + 1);
-            const endOfWeek = new Date(startOfWeek);
-            endOfWeek.setDate(startOfWeek.getDate() + 6);
-            
-            const weekKey = `Εβδομάδα: ${formatDate(startOfWeek.toISOString().split('T')[0])} - ${formatDate(endOfWeek.toISOString().split('T')[0])}`;
-
-            const dayKey = `${dayNamesFull[d.getDay()]} ${d.getDate()}/${d.getMonth()+1}`;
-
-            const client = clients.find(c => c.id === app.clientId) || { gender: 'other' };
-            const genderKey = client.gender === 'male' ? 'male' : client.gender === 'female' ? 'female' : 'other';
-
-            if (!groupedData[monthKey]) groupedData[monthKey] = {};
-            if (!groupedData[monthKey][weekKey]) groupedData[monthKey][weekKey] = {};
-            if (!groupedData[monthKey][weekKey][dayKey]) groupedData[monthKey][weekKey][dayKey] = { male: [], female: [], other: [] };
-
-            groupedData[monthKey][weekKey][dayKey][genderKey].push(app);
-        });
-
-        let html = '<div class="hierarchy-container">';
-
-        for (const [monthName, weeks] of Object.entries(groupedData)) {
-            html += `<div class="month-block">`;
-            html += `<div class="month-header"><i class="fas fa-calendar-alt"></i> ${monthName}</div>`;
-
-            for (const [weekName, days] of Object.entries(weeks)) {
-                html += `<div class="week-block">`;
-                html += `<div class="week-header"><span>${weekName}</span></div>`;
-
-                for (const [dayName, genders] of Object.entries(days)) {
-                    html += `<div class="day-block">`;
-                    html += `<div class="day-header">${dayName}</div>`;
-
-                    if (genders.male.length > 0) {
-                        html += `<div class="gender-block">
-                            <div class="gender-header male"><i class="fas fa-mars"></i> Άνδρες</div>
-                            ${renderMiniTable(genders.male)}
-                        </div>`;
-                    }
-
-                    if (genders.female.length > 0) {
-                        html += `<div class="gender-block">
-                            <div class="gender-header female"><i class="fas fa-venus"></i> Γυναίκες</div>
-                            ${renderMiniTable(genders.female)}
-                        </div>`;
-                    }
-
-                    if (genders.other.length > 0) {
-                        html += `<div class="gender-block">
-                            <div class="gender-header other"><i class="fas fa-user"></i> Άλλο</div>
-                            ${renderMiniTable(genders.other)}
-                        </div>`;
-                    }
-
-                    html += `</div>`;
-                }
-                html += `</div>`;
-            }
-            html += `</div>`;
-        }
-
-        html += '</div>';
-
-        area.innerHTML = html;
-    }
-
-    function renderMiniTable(apps) {
-        let tableHtml = `
-            <table class="data-table" style="margin-bottom: 0;">
-                <thead><tr><th>ΩΡΑ</th><th>ΠΕΛΑΤΗΣ</th><th>ΠΟΣΟ</th>${dashFinanceTab === 'pending' ? '<th>ΕΝΕΡΓΕΙΑ</th>' : ''}</tr></thead>
-                <tbody>
-        `;
-
-        apps.forEach(app => {
-            const client = clients.find(c => c.id === app.clientId) || { name: 'Άγνωστος', gender: 'other' };
-            const color = getClientColor(client);
-            const amountStr = parseFloat(app.amount).toFixed(2) + ' €';
-
-            tableHtml += `
-                <tr>
-                    <td data-label="ΩΡΑ" style="color: #00f2ff; font-family: 'Orbitron';">${app.time}</td>
-                    <td data-label="ΠΕΛΑΤΗΣ" style="color:${color};">${client.name}</td>
-                    <td data-label="ΠΟΣΟ" style="color:${dashFinanceTab === 'pending' ? '#9d00ff' : '#00ff80'}; font-weight:bold;">${dashFinanceTab === 'pending' ? '' : '+'} ${amountStr}</td>
-                    ${dashFinanceTab === 'pending' ? `<td data-label="ΕΝΕΡΓΕΙΑ"><button class="btn-sm btn-complete" onclick="completeAppointmentFromDashboard(${app.id})"><i class="fas fa-check"></i></button></td>` : ''}
-                </tr>
-            `;
-        });
-
-        tableHtml += `</tbody></table>`;
-        return tableHtml;
-    }
-
-    function completeAppointmentFromDashboard(appId) {
-        if (!confirm('Ολοκλήρωση ραντεβού;')) return;
-        const app = appointments.find(a => a.id === appId);
-        if (app) {
-            app.status = 'completed';
-            localStorage.setItem('massage_appointments', JSON.stringify(appointments));
-            showToast('Ολοκληρώθηκε!');
-            renderDashboard(document.getElementById('main-content'));
-        }
+    function resetAllData() {
+        if (!confirm('ΠΡΟΣΟΧΗ: Θα διαγραφούν ΟΛΑ τα ραντεβού. Συνέχεια;')) return;
+        appointments = [];
+        localStorage.removeItem('simple_appointments');
+        showToast('Διαγράφηκαν όλα.');
+        showView('appointments');
     }
 
     // ==========================================
@@ -1278,48 +580,6 @@
         toast.style.cssText = `position: fixed; bottom: 20px; right: 20px; left: 20px; background: rgba(0, 255, 128, 0.95); color: #050508; padding: 8px 12px; border-radius: 6px; font-family: 'Orbitron', sans-serif; font-size: 10px; z-index: 3000; text-align:center; max-width: 300px; margin: 0 auto;`;
         document.body.appendChild(toast);
         setTimeout(() => toast.remove(), 3000);
-    }
-
-    function exportData() {
-        const data = { clients, appointments, daysInfo };
-        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(blob);
-        a.download = `backup.json`;
-        a.click();
-        showToast('Backup OK!');
-    }
-
-    function importData(event) {
-        const file = event.target.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            try {
-                const data = JSON.parse(e.target.result);
-                if (data.clients && data.appointments) {
-                    clients = data.clients;
-                    appointments = data.appointments;
-                    daysInfo = data.daysInfo || {};
-                    localStorage.setItem('massage_clients', JSON.stringify(clients));
-                    localStorage.setItem('massage_appointments', JSON.stringify(appointments));
-                    localStorage.setItem('massage_days_info', JSON.stringify(daysInfo));
-                    showToast('Εισαγωγή OK!');
-                    showView('appointments');
-                } else alert('Μη έγκυρο αρχείο.');
-            } catch (err) { alert('Σφάλμα.'); }
-        };
-        reader.readAsText(file);
-    }
-
-    function resetAllData() {
-        if (!confirm('Διαγραφή ΟΛΩΝ των δεδομένων;')) return;
-        clients = []; appointments = []; daysInfo = {};
-        localStorage.removeItem('massage_clients');
-        localStorage.removeItem('massage_appointments');
-        localStorage.removeItem('massage_days_info');
-        showToast('Διαγράφηκαν όλα.');
-        showView('appointments');
     }
     </script>
 </body>
