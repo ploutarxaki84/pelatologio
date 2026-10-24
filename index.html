@@ -248,6 +248,13 @@
 
     document.addEventListener('DOMContentLoaded', () => { showView('appointments'); });
 
+    /* Ασφαλής δημιουργία τοπικής ημερομηνίας από "YYYY-MM-DD"
+       (αποφεύγει το UTC offset bug του new Date("YYYY-MM-DD")) */
+    function parseLocalDate(dateStr) {
+        const [y, m, d] = dateStr.split('-').map(Number);
+        return new Date(y, m - 1, d);
+    }
+
     function showView(viewName) {
         document.querySelectorAll('.sidebar-btn').forEach(btn => btn.classList.remove('active'));
         document.querySelector(`.nav-${viewName}`).classList.add('active');
@@ -276,7 +283,7 @@
 
         if (activeSelectedDate) {
             const dateStr = activeSelectedDate;
-            const d = new Date(dateStr);
+            const d = parseLocalDate(dateStr);
             const isSunday = d.getDay() === 0;
             
             const dateDisplay = `${dayNamesFull[d.getDay()]} ${d.getDate()} ${monthNamesFull[d.getMonth()]} ${d.getFullYear()}`;
@@ -358,20 +365,24 @@
         const month = currentCalDate.getMonth();
         document.getElementById('calendar-title').textContent = `${monthNamesFull[month]} ${year}`;
 
+        // getDay(): 0=Κυρ, 1=Δευ, ..., 6=Σαβ
         const firstDay = new Date(year, month, 1).getDay();
         const daysInMonth = new Date(year, month + 1, 0).getDate();
         const grid = document.getElementById('calendar-grid');
         grid.innerHTML = '';
 
+        // Εβδομάδα ξεκινά από ΚΥΡΙΑΚΗ
         const dayNames = ['ΚΥΡ', 'ΔΕΥ', 'ΤΡΙ', 'ΤΕΤ', 'ΠΕΜ', 'ΠΑΡ', 'ΣΑΒ'];
         dayNames.forEach(day => grid.innerHTML += `<div class="calendar-day-name">${day}</div>`);
 
-        let emptyCells = (firstDay === 0) ? 6 : firstDay - 1;
+        // ΔΙΟΡΘΩΣΗ: αφού η 1η στήλη είναι ΚΥΡ (getDay=0),
+        // τα κενά πριν την 1η του μήνα είναι ακριβώς firstDay.
+        const emptyCells = firstDay;
         for (let i = 0; i < emptyCells; i++) grid.innerHTML += `<div class="calendar-cell empty"></div>`;
 
         for (let day = 1; day <= daysInMonth; day++) {
             const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-            const d = new Date(dateStr);
+            const d = parseLocalDate(dateStr);
             const isSunday = d.getDay() === 0;
             const dayApps = appointments.filter(app => app.date === dateStr);
             
@@ -569,7 +580,7 @@
     // ==========================================
     function formatDate(dateStr) {
         if (!dateStr) return '-';
-        return new Date(dateStr).toLocaleDateString('el-GR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+        return parseLocalDate(dateStr).toLocaleDateString('el-GR', { day: '2-digit', month: '2-digit', year: 'numeric' });
     }
 
     function closeModal(id) { document.getElementById(id).style.display = 'none'; }
